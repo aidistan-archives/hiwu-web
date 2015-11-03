@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     app: './src/main.js',
-    vendor: ['vue', 'vue-router']
+    vendor: ['vue', 'vue-router', 'vue-resource', 'vue-validator']
   },
   output: {
     path: './static',

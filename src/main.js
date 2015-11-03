@@ -1,5 +1,6 @@
 var Vue = require('vue');
 var Router = require('vue-router');
+var Resource = require('vue-resource');
 
 var App = require('./components/App.vue');
 var HomeView = require('./components/HomeView.vue');
@@ -7,6 +8,7 @@ var LoginView = require('./components/LoginView.vue');
 
 // Install router
 Vue.use(Router);
+Vue.use(Resource);
 
 // Routing
 var router = new Router();
