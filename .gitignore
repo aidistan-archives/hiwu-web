@@ -1,2 +1,6 @@
 # Ignore node modules
 node_modules
+
+# Ignore built files
+static/bundle.js
+static/vendor.bundle.js
