@@ -1,0 +1,34 @@
+{
+  "name": "hiwu-spa",
+  "version": "0.1.0",
+  "description": "Hiwu single-page application",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --quiet --content-base static/"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "vue": "^1.0.0",
+    "vue-router": "^0.7.5"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.33",
+    "babel-loader": "^5.3.3",
+    "babel-runtime": "^5.8.29",
+    "css-loader": "^0.21.0",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.7.1",
+    "node-sass": "^3.4.1",
+    "sass-loader": "^3.1.1",
+    "style-loader": "^0.13.0",
+    "template-html-loader": "0.0.3",
+    "vue-hot-reload-api": "^1.2.1",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^6.0.4",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  }
+}
