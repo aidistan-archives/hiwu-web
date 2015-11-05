@@ -3,8 +3,7 @@ var Router = require('vue-router');
 var Resource = require('vue-resource');
 
 var App = require('./components/App.vue');
-var HomeView = require('./components/HomeView.vue');
-var LoginView = require('./components/LoginView.vue');
+var HomeView = require('./views/Home.vue');
 
 // Install router
 Vue.use(Router);
@@ -14,8 +13,7 @@ Vue.use(Resource);
 var router = new Router();
 
 router.map({
-  '/':      { component: HomeView  },
-  '/login': { component: LoginView }
+  '/':      { component: HomeView  }
 });
 
 router.beforeEach(function() {

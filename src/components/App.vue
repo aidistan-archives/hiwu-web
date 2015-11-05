@@ -2,7 +2,7 @@
   router-view
 </template>
 
-<style lang="sass">
+<style lang="scss">
 @import '../variables.scss';
 
 body {
