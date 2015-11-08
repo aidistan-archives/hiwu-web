@@ -2,9 +2,6 @@ var Vue = require('vue');
 var Router = require('vue-router');
 var Resource = require('vue-resource');
 
-var App = require('./components/App.vue');
-var HomeView = require('./views/Home.vue');
-
 // Install router
 Vue.use(Router);
 Vue.use(Resource);
@@ -13,7 +10,8 @@ Vue.use(Resource);
 var router = new Router();
 
 router.map({
-  '/':      { component: HomeView  }
+  '/':          { component: require('./views/Home.vue')  },
+  '/items/:id': { component: require('./views/Item.vue') }
 });
 
 router.beforeEach(function() {
@@ -24,4 +22,4 @@ router.beforeEach(function() {
 //   '*': '/'
 // });
 
-router.start(App, '#app');
+router.start(require('./components/App.vue'), '#app');

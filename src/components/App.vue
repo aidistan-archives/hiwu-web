@@ -1,11 +1,11 @@
 <template lang="jade">
-  router-view
+router-view
 </template>
 
 <style lang="scss">
 @import '../variables.scss';
 
 body {
-  background-color: $light-grey;
+  background-color: $lighter-grey;
 }
 </style>
