@@ -10,8 +10,9 @@ Vue.use(Resource);
 var router = new Router();
 
 router.map({
-  '/':          { component: require('./views/Home.vue')  },
-  '/items/:id': { component: require('./views/Item.vue') }
+  '/':              { component: require('./views/Home.vue')  },
+  '/galleries/:id': { component: require('./views/Gallery.vue') },
+  '/items/:id':     { component: require('./views/Item.vue') }
 });
 
 router.beforeEach(function() {

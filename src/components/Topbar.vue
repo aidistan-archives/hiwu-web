@@ -10,7 +10,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Untitled'
+      default: ''
     }
   }
 }
@@ -19,7 +19,7 @@ export default {
 <style lang="scss">
 @import '../variables.scss';
 
-.topbar {
+.topbar.border {
   border-bottom: solid 1px $grey;
 }
 </style>
