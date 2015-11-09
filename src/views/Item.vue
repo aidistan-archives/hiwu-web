@@ -10,18 +10,13 @@ topbar(:title="data.name")
       .am-u-sm-2
         img.am-img-responsive.am-center(:src="data.hiwuUser.avatar")
   #item-desc.am-padding
-    strong.am-text-sm {{ data.name }}
+    h3 {{ data.name }}
     p.am-text-xs {{ data.description }}
-  #item-actions.am-padding-sm
-    .am-g.am-text-center
-      .am-u-sm-4
-        span.am-icon-heart.am-margin-right-sm
-        span {{ data.likes  }} 人喜欢
-      .am-u-sm-4
-        span.am-icon-comment.am-margin-right-sm
-        span {{ data.comments.length }} 条评论
-      .am-u-sm-4
-        i.am-icon-ellipsis-h
+    span.am-icon-heart-o.am-margin-right-sm
+    span.am-margin-right {{ data.likes  }}
+    span.am-icon-comment-o.am-margin-right-sm
+    span {{ data.comments.length }}
+    span.am-icon-ellipsis-h.am-fr
   #item-comments
     template(v-for="comment in data.comments") {{ comment }}
 </template>
@@ -30,19 +25,24 @@ topbar(:title="data.name")
 export default {
   data: function() {
     return {
-      data: {}
+      data: {
+        name: '',
+        description: '',
+        photos: [{ url: '' }],
+        comments: [],
+        hiwuUser: { avatar: '' }
+      }
     };
   },
   computed: {
     date: function() {
       var date = '';
-      if (this.data) {
+      if (this.data.date_y > 0)
         date += this.data.date_y;
-        if (this.data.date_m > 0)
-          date += '.' + this.data.date_m;
-        if (this.data.date_d > 0)
-          date += '.' + this.data.date_d;
-      }
+      if (this.data.date_m > 0)
+        date += '.' + this.data.date_m;
+      if (this.data.date_d > 0)
+        date += '.' + this.data.date_d;
       return date;
     }
   },
@@ -73,10 +73,6 @@ export default {
 
 #item-desc {
   background-color: #A0E7EB;
-}
-
-#item-actions {
-  color: $grey;
-  border-bottom: solid 1px $light-grey;
+  span { color: $grey; }
 }
 </style>
