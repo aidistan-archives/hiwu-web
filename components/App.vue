@@ -3,7 +3,7 @@ router-view
 </template>
 
 <style lang="scss">
-@import '../variables.scss';
+@import '../stylesheets/variables.scss';
 
 body {
   background-color: $lighter-grey;

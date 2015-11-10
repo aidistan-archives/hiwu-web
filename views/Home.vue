@@ -8,7 +8,7 @@ div#home.am-container.am-text-center
 </template>
 
 <style lang="scss">
-@import '../variables.scss';
+@import '../stylesheets/variables.scss';
 
 #home {
   max-width: 792px;

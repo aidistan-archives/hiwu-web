@@ -5,10 +5,7 @@
     img.am-img-responsive.am-center(:src="data.photos[0].url")
     #item-photo-above.am-g.am-margin-bottom-sm
       .am-u-sm-2
-        .am-text-sm.am-text-center
-          {{ date }}
-          br
-          {{ data.city }}
+        .am-text-sm.am-text-center {{ date }} <br/> {{ data.city }}
       .am-u-sm-2
         img.am-img-responsive.am-center(:src="data.hiwuUser.avatar")
   #item-desc.am-padding
@@ -62,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../variables.scss';
+@import '../stylesheets/variables.scss';
 
 #item-photo {
   position: relative;

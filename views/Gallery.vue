@@ -36,6 +36,6 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../variables.scss';
+// @import '../stylesheets/variables.scss';
 
 </style>
