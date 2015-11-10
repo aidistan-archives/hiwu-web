@@ -1,7 +1,7 @@
 <template lang="jade">
 #today.am-margin-sm
   topbar(title="今日博物展", left-link="/today", left-icon="bars", has-border="true")
-  gallery(v-for="gallery in data", :data="gallery")
+  gallery(v-for="entry in data", :data="entry.gallery")
 </template>
 
 <script>
