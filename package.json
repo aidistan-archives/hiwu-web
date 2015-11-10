@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack-dev-server --inline --hot --quiet --content-base static/"
+    "watch": "webpack-dev-server --inline --hot --quiet --host 0.0.0.0 --content-base static/"
   },
   "dependencies": {
     "es6-promise": "^3.0.2",

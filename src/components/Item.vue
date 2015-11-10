@@ -30,7 +30,11 @@ export default {
     }
   },
   attached: function() {
-    this.textWidth = $('.item').width() - $('.item img').width();
+    var self = this;
+
+    setTimeout(function() {
+      self.textWidth = $('.item').width() - $('.item img').width();
+    }, 50);
   }
 }
 </script>
