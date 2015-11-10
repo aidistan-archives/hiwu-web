@@ -43,8 +43,13 @@ export default {
 
   > a { color: inherit; }
   img { height: 9em; }
-  .name { font-size: 1.2em; padding: 0.5em; }
-  .desc { padding: 0.5em; }
+  div { padding: 0.5em; }
+  .name {
+    font-size: 1.2em;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
 }
 
 .item + .item { margin-top: 1em; }
