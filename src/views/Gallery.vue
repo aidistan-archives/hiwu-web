@@ -1,15 +1,12 @@
 <template lang="jade">
-topbar
 #gallery.am-margin-sm
-  #gallery-photo
-    .am-g.am-margin-bottom
-      .am-u-sm-3.am-u-sm-centered
-        img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
-    p.am-text-lg.am-text-center {{ data.hiwuUser.nickname }}『{{ data.name }}』
-    p.am-text-xs {{ data.description }}
-  #gallery-items
-    template(v-for="item in data.items")
-      item(:data="item")
+  topbar.am-margin-bottom(:left-link="{ name: 'today' }")
+  .am-g.am-margin-bottom
+    .am-u-sm-3.am-u-sm-centered
+      img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
+  p.am-text-lg.am-text-center {{ data.hiwuUser.nickname }}『{{ data.name }}』
+  p.am-text-xs {{ data.description }}
+  item(v-for="item in data.items", :data="item")
 </template>
 
 <script>
@@ -23,8 +20,6 @@ export default {
         hiwuUser: { avatar: '' }
       }
     };
-  },
-  computed: {
   },
   created: function (done) {
     var self = this
@@ -41,6 +36,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../variables.scss';
+// @import '../variables.scss';
 
 </style>

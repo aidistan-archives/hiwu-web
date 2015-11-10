@@ -16,15 +16,7 @@ export default {
       }
     };
   },
-  props: {
-    data: {
-      default: {
-        name: '',
-        description: '',
-        photos: [{ url: '' }]
-      }
-    }
-  },
+  props: ['data'],
   computed: {
     short_desc: function() {
       var charNumPerLine = Math.floor(parseInt(this.textStyle.width) / 12);
@@ -44,12 +36,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../variables.scss';
+// @import '../variables.scss';
 
 .item {
   background-color: #fff;
 
-  a { color: inherit; }
+  > a { color: inherit; }
   img { height: 9em; }
   .name { font-size: 1.2em; padding: 0.5em; }
   .desc { padding: 0.5em; }

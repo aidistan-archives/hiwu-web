@@ -14,6 +14,10 @@ router.map({
     name: 'home',
     component: require('./views/Home.vue')
   },
+  '/today': {
+    name: 'today',
+    component: require('./views/Today.vue')
+  },
   '/galleries/:id': {
     name: 'gallery',
     component: require('./views/Gallery.vue')
