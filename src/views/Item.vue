@@ -4,9 +4,11 @@
   #item-photo
     img.am-img-responsive.am-center(:src="data.photos[0].url")
     #item-photo-above.am-g.am-margin-bottom-sm
-      .am-u-sm-10.am-text-sm
-        div {{ date }}
-        div {{ data.city }}
+      .am-u-sm-2
+        .am-text-sm.am-text-center
+          {{ date }}
+          br
+          {{ data.city }}
       .am-u-sm-2
         img.am-img-responsive.am-center(:src="data.hiwuUser.avatar")
   #item-desc.am-padding
@@ -39,10 +41,10 @@ export default {
       var date = '';
       if (this.data.date_y > 0)
         date += this.data.date_y;
-      if (this.data.date_m > 0)
-        date += '.' + this.data.date_m;
-      if (this.data.date_d > 0)
-        date += '.' + this.data.date_d;
+      // if (this.data.date_m > 0)
+      //   date += '.' + this.data.date_m;
+      // if (this.data.date_d > 0)
+      //   date += '.' + this.data.date_d;
       return date;
     }
   },
@@ -69,6 +71,11 @@ export default {
 #item-photo-above {
   position: absolute;
   bottom: 0;
+
+  .am-text-sm {
+    color: $light-grey;
+    background-color: rgba($dark-grey, 0.4);
+  }
 }
 
 #item-desc {
