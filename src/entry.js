@@ -10,17 +10,26 @@ Vue.use(Resource);
 var router = new Router();
 
 router.map({
-  '/':              { component: require('./views/Home.vue')  },
-  '/galleries/:id': { component: require('./views/Gallery.vue') },
-  '/items/:id':     { component: require('./views/Item.vue') }
+  '/': {
+    name: 'home',
+    component: require('./views/Home.vue')
+  },
+  '/galleries/:id': {
+    name: 'gallery',
+    component: require('./views/Gallery.vue')
+  },
+  '/items/:id': {
+    name: 'item',
+    component: require('./views/Item.vue')
+  }
 });
 
 router.beforeEach(function() {
   window.scrollTo(0, 0);
 });
 
-// router.redirect({
-//   '*': '/'
-// });
+router.redirect({
+  '*': '/'
+});
 
 router.start(require('./components/App.vue'), '#app');

@@ -1,5 +1,5 @@
 <template lang="jade">
-topbar(:title="data.name")
+topbar(:title="data.name", :left-link="{ name: 'gallery', params: { id: data.galleryId } }")
 #item.am-margin-sm
   #item-photo
     img.am-img-responsive.am-center(:src="data.photos[0].url")

@@ -1,16 +1,19 @@
 <template lang="jade">
 .item.am-cf.am-text-xs
-  a(v-link="{ path: '/items/' + data.id }")
+  a(v-link="{ name: 'item', params: { id: data.id } }")
     img.am-img-responsive.am-fl(:src="data.photos[0].url")
-    .name.am-fl(:style="{width: textWidth + 'px'}") {{ data.name }}
-    .desc.am-fl(:style="{width: textWidth + 'px'}") {{ short_desc }}
+    .name.am-fl(:style="textStyle") {{ data.name }}
+    .desc.am-fl(:style="textStyle") {{ short_desc }}
 </template>
 
 <script>
 export default {
   data: function() {
     return {
-      textWidth: 0
+      textStyle: {
+        width: 0,
+        visibility: 'hidden'
+      }
     };
   },
   props: {
@@ -24,7 +27,7 @@ export default {
   },
   computed: {
     short_desc: function() {
-      var charNumPerLine = Math.floor(this.textWidth / parseInt($('.item').css('font-size')));
+      var charNumPerLine = Math.floor(parseInt(this.textStyle.width) / 12);
       var shortDescription = this.data.description.slice(0, charNumPerLine * 3 - 6);
       return (shortDescription.length < this.data.description.length ? shortDescription + '...' : shortDescription);
     }
@@ -33,7 +36,8 @@ export default {
     var self = this;
 
     setTimeout(function() {
-      self.textWidth = $('.item').width() - $('.item img').width();
+      self.textStyle.width = $('.item').width() - $('.item img').width() + 'px';
+      self.textStyle.visibility = 'visible';
     }, 50);
   }
 }
