@@ -18,6 +18,10 @@ router.map({
     name: 'today',
     component: require('./views/Today.vue')
   },
+  '/archive': {
+    name: 'archive',
+    component: require('./views/Archive.vue')
+  },
   '/galleries/:id': {
     name: 'gallery',
     component: require('./views/Gallery.vue')

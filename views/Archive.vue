@@ -1,7 +1,8 @@
 <template lang="jade">
-#today.am-margin-sm
-  topbar(title="今日博物展", left-link="/archive", left-icon="bars", has-border="true")
-  gallery(v-for="entry in data", :data="entry.gallery")
+#archive.am-margin-sm
+  topbar(title="往期博物展", left-link="/today", has-border="true")
+  .archive-date.am-text-sm.am-margin-bottom-xs 2015年
+  archive-line(v-for="entry in data", :data="entry.gallery")
 </template>
 
 <script>
@@ -20,12 +21,15 @@ export default {
   },
   components: {
     topbar: require('../components/Topbar.vue'),
-    gallery: require('../components/Gallery.vue')
+    archiveLine: require('../components/ArchiveLine.vue')
   }
 }
 </script>
 
 <style lang="scss">
-// @import '../stylesheets/variables.scss';
+@import '../stylesheets/variables.scss';
 
+.archive-date {
+  color: $grey;
+}
 </style>
