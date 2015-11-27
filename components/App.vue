@@ -8,4 +8,15 @@ router-view
 body {
   background-color: $lighter-grey;
 }
+
+.view {
+  background-color: $lighter-grey;
+}
+
+.view-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 </style>

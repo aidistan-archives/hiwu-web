@@ -1,6 +1,6 @@
 <template lang="jade">
-.item.am-cf.am-text-xs
-  a(v-link="{ name: 'item', params: { id: data.id } }")
+.item-card.am-cf.am-text-xs
+  a(v-link="link")
     img.am-img-responsive.am-fl(:src="data.photos[0].url")
     .name.am-fl(:style="textStyle") {{ data.name }}
     .desc.am-fl(:style="textStyle") {{ short_desc }}
@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  props: ['data', 'link'],
   data: function() {
     return {
       textStyle: {
@@ -16,7 +17,6 @@ export default {
       }
     };
   },
-  props: ['data'],
   computed: {
     short_desc: function() {
       var charNumPerLine = Math.floor(parseInt(this.textStyle.width) / 12);
@@ -28,7 +28,7 @@ export default {
     var self = this;
 
     setTimeout(function() {
-      self.textStyle.width = $('.item').width() - $('.item img').width() + 'px';
+      self.textStyle.width = $('.item-card').width() - $('.item-card img').width() + 'px';
       self.textStyle.visibility = 'visible';
     }, 50);
   }
@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
 // @import '../stylesheets/variables.scss';
 
-.item {
+.item-card {
   background-color: #fff;
 
   > a { color: inherit; }
@@ -47,10 +47,8 @@ export default {
   .name {
     font-size: 1.2em;
     overflow: hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
-
-.item + .item { margin-top: 1em; }
 </style>

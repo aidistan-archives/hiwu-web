@@ -2,3 +2,11 @@ $dark-grey: #3f3a39;
 $grey: #828383;
 $light-grey: #cccdce;
 $lighter-grey: #e8e9eb;
+
+@mixin layer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+@mixin layer-fl { @include layer; left: 0; }
+@mixin layer-fr { @include layer; right: 0; }

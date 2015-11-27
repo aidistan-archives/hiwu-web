@@ -14,26 +14,56 @@ router.map({
     name: 'home',
     component: require('./views/Home.vue')
   },
-  '/today': {
-    name: 'today',
-    component: require('./views/Today.vue')
-  },
   '/archive': {
     name: 'archive',
-    component: require('./views/Archive.vue')
+    component: require('./views/Archive.vue'),
+    subRoutes: {
+      '/galleries/:gallery_id': {
+        name: 'archive_gallery',
+        component: require('./views/Gallery.vue'),
+        subRoutes: {
+          '/items/:item_id': {
+            name: 'archive_gallery_item',
+            component: require('./views/Item.vue')
+          }
+        }
+      }
+    }
   },
-  '/galleries/:id': {
+  '/today': {
+    name: 'today',
+    component: require('./views/Today.vue'),
+    subRoutes: {
+      '/galleries/:gallery_id': {
+        name: 'today_gallery',
+        component: require('./views/Gallery.vue'),
+        subRoutes: {
+          '/items/:item_id': {
+            name: 'today_gallery_item',
+            component: require('./views/Item.vue')
+          }
+        }
+      },
+      '/items/:item_id': {
+        name: 'archive_item',
+        component: require('./views/Item.vue')
+      }
+    }
+  },
+  '/galleries/:gallery_id': {
     name: 'gallery',
-    component: require('./views/Gallery.vue')
+    component: require('./views/Gallery.vue'),
+    subRoutes: {
+      '/items/:item_id': {
+        name: 'gallery_item',
+        component: require('./views/Item.vue')
+      }
+    }
   },
-  '/items/:id': {
+  '/items/:item_id': {
     name: 'item',
     component: require('./views/Item.vue')
   }
-});
-
-router.beforeEach(function() {
-  window.scrollTo(0, 0);
 });
 
 router.redirect({

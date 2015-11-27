@@ -1,14 +1,16 @@
 <template lang="jade">
-#item.am-margin-sm
-  topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'gallery', params: { id: data.galleryId } }")
-  #item-photo
+#item.view
+  #item-photo.am-margin-horizontal-sm.am-margin-top-sm
     img.am-img-responsive.am-center(:src="data.photos[0].url")
-    #item-photo-above.am-g.am-margin-bottom-sm
+    #item-photo-header.am-g.am-margin-top-sm
+      .am-u-sm-2
+        a.am-icon-chevron-left.am-link-muted(v-link="{ path: '..' }")
+    #item-photo-footer.am-g.am-margin-bottom-sm
       .am-u-sm-2
         .am-text-sm.am-text-center {{ date }} <br/> {{ data.city }}
       .am-u-sm-2
-        img.am-img-responsive.am-center(:src="data.hiwuUser.avatar")
-  #item-desc.am-padding
+        img.am-img-responsive.am-circle(:src="data.hiwuUser.avatar")
+  #item-desc.am-margin-horizontal-sm.am-padding
     h3 {{ data.name }}
     p.am-text-xs {{ data.description }}
     span.am-icon-heart-o.am-margin-right-sm
@@ -16,8 +18,9 @@
     span.am-icon-comment-o.am-margin-right-sm
     span {{ data.comments.length }}
     span.am-icon-ellipsis-h.am-fr
-  #item-comments
-    template(v-for="comment in data.comments") {{ comment }}
+  #item-comments.am-margin-sm
+    template(v-for="comment in data.comments")
+      span <strong>{{ comment.userId }}</strong>：{{ comment.content }}
 </template>
 
 <script>
@@ -48,9 +51,12 @@ export default {
   created: function (done) {
     var self = this
 
-    self.$http.get('http://palace.server.hiwu.ren/api/Items/' + self.$route.params.id + '/publicView', function (data, status, request) {
+    self.$http.get('http://palace.server.hiwu.ren/api/Items/' + self.$route.params.item_id + '/publicView', function (data, status, request) {
       self.data = data;
     });
+  },
+  ready: function() {
+    $('#item').height($(window).height());
   },
   components: {
     topbar: require('../components/Topbar.vue')
@@ -61,11 +67,21 @@ export default {
 <style lang="scss">
 @import '../stylesheets/variables.scss';
 
+#item {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 #item-photo {
   position: relative;
 }
 
-#item-photo-above {
+#item-photo-header {
+  position: absolute;
+  top: 0;
+}
+
+#item-photo-footer {
   position: absolute;
   bottom: 0;
 

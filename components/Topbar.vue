@@ -1,11 +1,9 @@
 <template lang="jade">
 .topbar
-  .am-text-center {{ title }}
-  a.left(v-show="leftLink", v-link="leftLink")
-    .am-text-lg(:class="['am-icon-' + leftIcon]")
-  a.right(v-show="rightLink", v-link="rightLink")
-    .am-text-lg(:class="['am-icon-' + rightIcon]")
-  hr.am-margin-top-sm.am-margin-bottom-sm(v-show="hasBorder")
+  .am-text-center.am-padding-sm {{ title }}
+    a.am-fl(v-show="leftLink", v-link="leftLink", :class="['am-icon-' + leftIcon]")
+    a.am-fr(v-show="rightLink", v-link="rightLink", :class="['am-icon-' + rightIcon]")
+  hr(v-show="hasBorder")
 </template>
 
 <script>
@@ -36,22 +34,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../stylesheets/variables.scss';
 
 .topbar {
   position: relative;
 
-  a {
-    color: inherit;
-    position: absolute;
-    top: 0;
-
-    &.left  { left: 0 }
-    &.right { right: 0 }
-  }
+  a { color: inherit; }
 
   hr {
+    margin: 0;
     border-bottom: solid 2px $light-grey;
   }
 }
