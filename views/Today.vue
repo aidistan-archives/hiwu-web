@@ -48,7 +48,7 @@ export default {
   right: 0;
 
   > img {
-    background: #F4D137;
+    background: $primary;
   }
 }
 </style>

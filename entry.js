@@ -67,6 +67,22 @@ router.map({
   '/items/:item_id': {
     name: 'item',
     component: require('./views/Item.vue')
+  },
+  '/mine': {
+    name: 'mine',
+    component: require('./views/Mine.vue')
+  }
+});
+
+router.beforeEach(function(transition) {
+  if (/^\/mine/.test(transition.to.path)) {
+    if (router.app.userId) {
+      transition.next();
+    } else {
+      transition.abort();
+    }
+  } else {
+    transition.next();
   }
 });
 
