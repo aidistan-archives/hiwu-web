@@ -3,7 +3,7 @@
   #today-topbar
     topbar(title="今日博物展", left-link="/archive", left-icon="bars", has-border="true")
     a(v-link="{ path: 'login', append: true }")
-      img.am-margin-sm(src="/logo.jpg", alt="登陆", width="25.6", height="25.6")
+      img.am-margin-sm.am-round(src="/logo-48.png", alt="登陆", width="25.6", height="25.6")
   #today-galleries
     gallery.am-margin-sm.am-margin-bottom(v-for="entry in data", :data="entry.gallery")
   #today-child.view-wrapper
@@ -46,5 +46,9 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+
+  > img {
+    background: #F4D137;
+  }
 }
 </style>

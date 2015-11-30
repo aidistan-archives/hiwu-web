@@ -3,8 +3,8 @@
   #login-topbar
     topbar(left-link="{ path: '.' }", left-icon="times")
   .am-g.am-margin-top-xl.am-padding-xl
-    .am-u-sm-4.am-u-sm-centered
-      img.am-img-responsive.am-center(src="/logo.jpg", alt="物境未觉")
+    .am-u-sm-6.am-u-sm-centered
+      img.am-img-responsive.am-center(src="/logo-1024.png", alt="物境未觉")
   .am-g
     .am-u-sm-10.am-u-sm-centered
       form.am-form
