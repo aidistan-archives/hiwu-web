@@ -34,6 +34,10 @@ router.map({
     name: 'today',
     component: require('./views/Today.vue'),
     subRoutes: {
+      '/login': {
+        name: 'today_login',
+        component: require('./views/Login.vue')
+      },
       '/galleries/:gallery_id': {
         name: 'today_gallery',
         component: require('./views/Gallery.vue'),

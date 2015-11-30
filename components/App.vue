@@ -2,6 +2,17 @@
 router-view
 </template>
 
+<script>
+export default {
+  data: function() {
+    return {
+      userId: null,
+      accessToken: null
+    };
+  }
+}
+</script>
+
 <style lang="scss">
 @import '../stylesheets/variables.scss';
 
