@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../stylesheets/variables.scss';
+@import '../variables.scss';
 
 .topbar {
   position: relative;
@@ -44,7 +44,7 @@ export default {
 
   hr {
     margin: 0;
-    border-bottom: solid 2px $light-grey;
+    border-bottom: solid 2px $grey-light;
   }
 }
 </style>

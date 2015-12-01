@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../stylesheets/variables.scss';
+@import '../variables.scss';
 
 #item {
   overflow-x: hidden;
@@ -86,8 +86,8 @@ export default {
   bottom: 0;
 
   .am-text-sm {
-    color: $light-grey;
-    background-color: rgba($dark-grey, 0.4);
+    color: $grey-light;
+    background-color: rgba($grey-dark, 0.4);
   }
 }
 

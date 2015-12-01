@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../stylesheets/variables.scss';
+@import '../variables.scss';
 
 #mine {
   overflow-x: hidden;

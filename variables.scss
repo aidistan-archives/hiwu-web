@@ -1,9 +1,11 @@
-$dark-grey: #3f3a39;
-$grey: #828383;
-$light-grey: #cccdce;
-$lighter-grey: #e8e9eb;
-
+// Colors
 $primary: #F4D137;
+
+$grey-dark:    #3f3a39;
+$grey:         #828383;
+$grey-light:   #cccdce;
+$grey-lighter: #e8e9eb;
+
 
 @mixin layer {
   position: absolute;

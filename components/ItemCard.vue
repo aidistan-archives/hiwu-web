@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../stylesheets/variables.scss';
+// @import '../variables.scss';
 
 .item-card {
   background-color: #fff;

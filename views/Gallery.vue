@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../stylesheets/variables.scss';
+// @import '../variables.scss';
 
 #gallery {
   overflow-x: hidden;

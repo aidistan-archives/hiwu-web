@@ -53,20 +53,17 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../stylesheets/variables.scss';
+@import './variables.scss';
 
 body {
-  background-color: $lighter-grey;
+  background-color: $grey-lighter;
 }
 
 .view {
-  background-color: $lighter-grey;
+  background-color: $grey-lighter;
 }
 
 .view-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  @include layer-fl;
 }
 </style>

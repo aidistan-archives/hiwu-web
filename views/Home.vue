@@ -10,7 +10,7 @@
 </template>
 
 <style lang="scss">
-@import '../stylesheets/variables.scss';
+@import '../variables.scss';
 
 #home {
   max-width: 792px;
@@ -29,7 +29,7 @@
   width: 45px;
   height: 45px;
   border-left: solid 45px transparent;
-  border-top: solid 45px $dark-grey;
+  border-top: solid 45px $grey-dark;
   cursor: pointer;
 
   @media screen and (min-width: 481px) { display: none; }

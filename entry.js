@@ -106,4 +106,4 @@ router.redirect({
   '*': '/'
 });
 
-router.start(require('./components/App.vue'), '#app');
+router.start(require('./App.vue'), '#app');
