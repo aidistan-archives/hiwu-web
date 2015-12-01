@@ -49,7 +49,7 @@ router.map({
         }
       },
       '/items/:item_id': {
-        name: 'archive_item',
+        name: 'today_item',
         component: require('./views/Item.vue')
       }
     }
@@ -70,7 +70,23 @@ router.map({
   },
   '/mine': {
     name: 'mine',
-    component: require('./views/Mine.vue')
+    component: require('./views/Mine.vue'),
+    subRoutes: {
+      '/galleries/:gallery_id': {
+        name: 'mine_gallery',
+        component: require('./views/Gallery.vue'),
+        subRoutes: {
+          '/items/:item_id': {
+            name: 'mine_gallery_item',
+            component: require('./views/Item.vue')
+          }
+        }
+      },
+      '/items/:item_id': {
+        name: 'mine_item',
+        component: require('./views/Item.vue')
+      }
+    }
   }
 });
 

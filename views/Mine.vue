@@ -14,6 +14,8 @@
         span {{ itemNum }} 物品
   #mine-galleries
     gallery.am-margin-sm.am-margin-bottom(v-for="gallery in data.galleries", :data="gallery")
+  #mine-child.view-wrapper
+    router-view
 </template>
 
 <script>
