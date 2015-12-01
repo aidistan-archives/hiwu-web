@@ -6,7 +6,7 @@
     #mine-info.am-cf
       img.am-circle.am-fl.am-margin-right(:src="data.avatar", height="48")
       .am-text-lg {{ data.nickname }}
-      .am-text-xs 逗逗别逗
+      .am-text-xs {{ data.description }}
     #mine-stat.am-margin-top
       span.am-margin-vertical.am-padding-xs.am-padding-horizontal.am-round.am-text-sm
         span {{ data.galleries.length }} 长廊
@@ -22,7 +22,12 @@ var querystring = require('querystring');
 export default {
   data: function() {
     return {
-      data: {}
+      data: {
+        nickname: '',
+        description: '',
+        avatar: '',
+        galleries: []
+      }
     };
   },
   computed: {
@@ -41,14 +46,14 @@ export default {
       access_token: self.$root.accessToken,
       filter: JSON.stringify({
         include: {
-          galleries: {
-            items: ["photos"]
-          }
+          galleries: [
+            { items: ['photos'] },
+            'hiwuUser'
+          ]
         }
       })
     }), function (data, status, request) {
       self.data = data;
-      console.log(data);
     });
   },
   ready: function() {
@@ -69,13 +74,17 @@ export default {
   overflow-y: scroll;
 }
 
-#mine-topbar > a {
-  position: absolute;
-  top: 0;
-  right: 0;
+#mine-topbar {
+  position: relative;
 
-  > img {
-    background: $primary;
+  > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    > img {
+      background: $primary;
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 <template lang="jade">
 #login.view
   #login-topbar
-    topbar(left-link="{ path: '.' }", left-icon="times")
+    topbar(:left-link="{ path: '.' }", left-icon="times")
   .am-g.am-margin-top-xl.am-padding-xl
     .am-u-sm-6.am-u-sm-centered
       img.am-img-responsive.am-center(src="/logo-1024.png", alt="物境未觉")
