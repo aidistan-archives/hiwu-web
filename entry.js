@@ -85,6 +85,10 @@ router.map({
       '/items/:item_id': {
         name: 'mine_item',
         component: require('./views/Item.vue')
+      },
+      '/me': {
+        name: 'mine_me',
+        component: require('./views/Me.vue')
       }
     }
   }

@@ -4,31 +4,27 @@ router-view
 
 <script>
 export default {
-  computed: {
-    userId: function() {
-      var userId = this.getCookie('userId');
-      if (userId === '') {
-        return null;
-      } else {
-        return userId;
-      }
-    },
-    accessToken: function() {
-      var accessToken = this.getCookie('accessToken');
-      if (accessToken === '') {
-        return null;
-      } else {
-        return accessToken;
-      }
-    }
+  data: function() {
+    return {
+      userId: null,
+      accessToken: null
+    };
+  },
+  ready: function() {
+    this.userId = this.getCookie('userId');
+    this.accessToken = this.getCookie('accessToken');
   },
   methods: {
     login: function(accessToken) {
+      this.userId = accessToken.userId;
       this.setCookie('userId', accessToken.userId, 30);
+      this.accessToken = accessToken.id;
       this.setCookie('accessToken', accessToken.id, 30);
     },
     logout: function() {
+      this.userId = null;
       this.setCookie('userId', '', 0);
+      this.accessToken = null;
       this.setCookie('accessToken', '', 0);
     },
     setCookie: function(name, value, expireDate) {

@@ -3,7 +3,7 @@
   #mine-topbar.am-padding-sm
     a(v-link="{ name: 'today' }")
       img.am-margin-sm.am-round(src="/logo-48.png", alt="今日博物展", width="25.6", height="25.6")
-    #mine-info.am-cf
+    #mine-info.am-cf(v-link="{ path: 'me', append: true }")
       img.am-circle.am-fl.am-margin-right(:src="data.avatar", height="48")
       .am-text-lg {{ data.nickname }}
       .am-text-xs {{ data.description }}
@@ -88,6 +88,10 @@ export default {
       background: $primary;
     }
   }
+}
+
+#mine-info {
+  cursor: pointer;
 }
 
 #mine-stat > span {
