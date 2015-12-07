@@ -36,7 +36,7 @@ export default {
       var self = this
       self.$http.post('http://palace.server.hiwu.ren/api/HiwuUsers/simpleLogin?username=' + self.username, function (data, status, request) {
         self.$root.login(data);
-        self.$route.router.go({ name: 'mine' });
+        self.$route.router.go({ name: 'today' });
       });
     }
   },
