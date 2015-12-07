@@ -25,7 +25,7 @@ export default {
   created: function(done) {
     var self = this
 
-    self.$http.get('http://palace.server.hiwu.ren/api/Today/publicView', function (data, status, request) {
+    self.$http.get(self.$root.apiUrl + '/Today/publicView', function (data, status, request) {
       self.data = data;
     });
   },

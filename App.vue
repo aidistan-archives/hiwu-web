@@ -7,8 +7,22 @@ export default {
   data: function() {
     return {
       userId: null,
-      accessToken: null
+      accessToken: null,
+      oauth2: {
+        weixin: 'wx92f55323cbadd8e8',
+        weibo: '3167931574'
+      }
     };
+  },
+  computed: {
+    apiUrl: function() {
+      // Extract the api url from window.location or give it directly
+      if (false) {
+        return window.location.protocol + '//' + window.location.host + '/api';
+      } else {
+        return 'http://palace.server.hiwu.ren/api';
+      }
+    }
   },
   ready: function() {
     this.userId = this.getCookie('userId');

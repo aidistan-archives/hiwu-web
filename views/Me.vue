@@ -52,7 +52,7 @@ export default {
   created: function (done) {
     var self = this;
 
-    self.$http.get('http://palace.server.hiwu.ren/api/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
+    self.$http.get(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
       access_token: self.$root.accessToken
     }), function (data, status, request) {
       self.data = data;
@@ -67,7 +67,7 @@ export default {
       self.modalTitle = '更新昵称';
       self.modalInput = self.data.nickname;
       $('#me-prompt').modal({onConfirm: function() {
-        self.$http.put('http://palace.server.hiwu.ren/api/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
+        self.$http.put(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
           access_token: self.$root.accessToken
         }), {
           nickname: self.modalInput
@@ -81,7 +81,7 @@ export default {
       self.modalTitle = '更新简介';
       self.modalInput = self.data.description;
       $('#me-prompt').modal({onConfirm: function() {
-        self.$http.put('http://palace.server.hiwu.ren/api/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
+        self.$http.put(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
           access_token: self.$root.accessToken
         }), {
           description: self.modalInput

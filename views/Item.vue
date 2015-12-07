@@ -51,7 +51,7 @@ export default {
   created: function (done) {
     var self = this
 
-    self.$http.get('http://palace.server.hiwu.ren/api/Items/' + self.$route.params.item_id + '/publicView', function (data, status, request) {
+    self.$http.get(self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView', function (data, status, request) {
       self.data = data;
     });
   },

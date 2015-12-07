@@ -29,7 +29,7 @@ export default {
   created: function (done) {
     var self = this
 
-    self.$http.get('http://palace.server.hiwu.ren/api/Galleries/' + self.$route.params.gallery_id + '/publicView', function (data, status, request) {
+    self.$http.get(self.$root.apiUrl + '/Galleries/' + self.$route.params.gallery_id + '/publicView', function (data, status, request) {
       self.data = data;
     });
   },

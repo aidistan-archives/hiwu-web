@@ -34,7 +34,7 @@ export default {
       if (this.username === '') return;
 
       var self = this
-      self.$http.post('http://palace.server.hiwu.ren/api/HiwuUsers/simpleLogin?username=' + self.username, function (data, status, request) {
+      self.$http.post(self.$root.apiUrl + '/HiwuUsers/simpleLogin?username=' + self.username, function (data, status, request) {
         self.$root.login(data);
         self.$route.router.go({ name: 'today' });
       });

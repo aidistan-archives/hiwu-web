@@ -44,7 +44,7 @@ export default {
   created: function (done) {
     var self = this;
 
-    self.$http.get('http://palace.server.hiwu.ren/api/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
+    self.$http.get(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
       access_token: self.$root.accessToken,
       filter: JSON.stringify({
         include: {

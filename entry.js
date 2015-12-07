@@ -36,7 +36,7 @@ router.map({
     subRoutes: {
       '/login': {
         name: 'today_login',
-        component: require('./views/Login.vue')
+        component: require('./views/OauthLogin.vue')
       },
       '/galleries/:gallery_id': {
         name: 'today_gallery',
