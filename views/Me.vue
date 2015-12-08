@@ -62,33 +62,34 @@ export default {
     $('#me').height($(window).height());
   },
   methods: {
-    promptNickname: function() {
+    prompt: function(property) {
       var self = this;
-      self.modalTitle = '更新昵称';
-      self.modalInput = self.data.nickname;
-      $('#me-prompt').modal({onConfirm: function() {
-        self.$http.put(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
-          access_token: self.$root.accessToken
-        }), {
-          nickname: self.modalInput
-        }, function (data, status, request) {
-          self.data = data;
-        });
-      }});
+
+      // Use relatedTarget to pass the property name, since onConfirm is only
+      // binded at the first time.
+      $('#me-prompt').modal({
+        relatedTarget: property,
+        onConfirm: function() {
+          var data = {};
+          data[this.relatedTarget] = self.modalInput;
+
+          self.$http.put(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
+            access_token: self.$root.accessToken
+          }), data, function (data, status, request) {
+            self.data = data;
+          });
+        }
+      });
+    },
+    promptNickname: function() {
+      this.modalTitle = '更新昵称';
+      this.modalInput = this.data.nickname;
+      this.prompt('nickname');
     },
     promptDescription: function() {
-      var self = this;
-      self.modalTitle = '更新简介';
-      self.modalInput = self.data.description;
-      $('#me-prompt').modal({onConfirm: function() {
-        self.$http.put(self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '?' + querystring.stringify({
-          access_token: self.$root.accessToken
-        }), {
-          description: self.modalInput
-        }, function (data, status, request) {
-          self.data = data;
-        });
-      }});
+      this.modalTitle = '更新简介';
+      this.modalInput = this.data.description;
+      this.prompt('description');
     },
     logout: function() {
       this.$root.logout();
