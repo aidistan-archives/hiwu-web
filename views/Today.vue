@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     rightLink: function() {
-      return { name: this.$root.userId ? 'today_me' : 'today_login' };
+      return { name: this.$root.userId ? 'today_me' : 'today_oauthLogin' };
     }
   },
   created: function(done) {

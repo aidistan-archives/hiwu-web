@@ -13,6 +13,9 @@
       a.am-btn.am-btn-danger.am-btn-lg.am-btn-block.am-margin-bottom-lg(:href="weiboLink")
         i.am-icon-weibo.am-margin-right-sm
         span 微博登陆
+  .am-g
+    .am-u-sm-10.am-u-sm-centered.am-margin-bottom.am-text-center
+      a.am-link-muted.am-text-sm(v-link="{ name: 'today_accountLogin' }") 受邀用户登陆 &gt;
 </template>
 
 <script>
@@ -29,7 +32,7 @@ export default {
     weixinLink: function() {
       return 'https://open.weixin.qq.com/connect/qrconnect?' + qs.stringify({
         appid: this.$root.oauth2.weixin,
-        redirect_uri: window.location.href,
+        redirect_uri: window.location.href.split('?')[0],
         response_type: 'code',
         scope: 'snsapi_login',
         state: 'weixin'
@@ -38,7 +41,7 @@ export default {
     weiboLink: function() {
       return 'https://api.weibo.com/oauth2/authorize?' + qs.stringify({
         client_id: this.$root.oauth2.weibo,
-        redirect_uri: window.location.href,
+        redirect_uri: window.location.href.split('?')[0],
         state: 'weibo'
       });
     }
@@ -52,7 +55,7 @@ export default {
         self.$route.router.go({ name: 'today' });
       });
     } else if (params.state === 'weibo' && params.code) {
-      self.$http.post(self.$root.apiUrl + '/HiwuUsers/weiboLogin?username=' + params.code, function (data, status, request) {
+      self.$http.post(self.$root.apiUrl + '/HiwuUsers/weiboLogin?code=' + params.code, function (data, status, request) {
         self.$root.login(data);
         self.$route.router.go({ name: 'today' });
       });
@@ -71,7 +74,10 @@ export default {
 // @import '../variables.scss';
 
 #login {
+  position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  .am-g:last-child { position: absolute; bottom: 0; }
 }
 </style>

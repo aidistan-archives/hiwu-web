@@ -16,6 +16,9 @@
             .am-form-help.am-text-right 忘记密码
         .am-form-group
           a.am-btn.am-btn-primary.am-btn-block(@click="login") 登陆
+  .am-g
+    .am-u-sm-10.am-u-sm-centered.am-margin-bottom.am-text-center
+      a.am-link-muted.am-text-sm(v-link="{ name: 'today_oauthLogin' }") 社交账号登陆 &gt;
 </template>
 
 <script>
@@ -50,7 +53,10 @@ export default {
 // @import '../variables.scss';
 
 #login {
+  position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  .am-g:last-child { position: absolute; bottom: 0; }
 }
 </style>
