@@ -42,7 +42,7 @@ export default {
   background-color: #fff;
 
   > a { color: inherit; }
-  img { height: 9em; }
+  img { width: 9em; height: 9em; }
   div { padding: 0.5em; }
   .name {
     font-size: 1.2em;

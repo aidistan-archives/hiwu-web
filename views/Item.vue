@@ -2,10 +2,10 @@
 #item.view
   #item-photo.am-margin-horizontal-sm.am-margin-top-sm
     img.am-img-responsive.am-center(:src="data.photos[0].url")
-    #item-photo-header.am-g.am-margin-top-sm
+    header.am-g.am-margin-top-sm
       .am-u-sm-2
         a.am-icon-chevron-left.am-link-muted(v-link="{ path: '..' }")
-    #item-photo-footer.am-g.am-margin-bottom-sm
+    footer.am-g.am-margin-bottom-sm
       .am-u-sm-2
         .am-text-sm.am-text-center {{ date }} <br/> {{ data.city }}
       .am-u-sm-2
@@ -13,27 +13,38 @@
   #item-desc.am-margin-horizontal-sm.am-padding
     h3 {{ data.name }}
     p.am-text-xs {{ data.description }}
-    span.am-icon-heart-o.am-margin-right-sm
-    span.am-margin-right {{ data.likes  }}
-    span.am-icon-comment-o.am-margin-right-sm
-    span {{ data.comments.length }}
+    span#item-desc-like(@click="like")
+      i.am-icon-heart.am-text-danger.am-margin-right-sm(v-show="data.liked")
+      i.am-icon-heart-o.am-margin-right-sm(v-show="!data.liked")
+      span {{ data.likes  }}
+    span.am-margin-right
+    span#item-desc-comment(@click="toggle")
+      i.am-icon-comment-o.am-margin-right-sm
+      span {{ data.comments.length }}
     span.am-icon-ellipsis-h.am-fr
-  #item-comments.am-margin-sm
+  #item-comments.am-margin-sm.am-text-sm
     template(v-for="comment in data.comments")
-      span <strong>{{ comment.userId }}</strong>：{{ comment.content }}
+      .am-magrin-sm <strong>{{ comment.hiwuUser.nickname }}</strong>：{{ comment.content }}
+  #item-box.am-padding-bottom-xs.am-padding-horizontal-sm(v-show="box")
+    input.am-form-field.am-input-sm(v-model="comment", placeHolder="请输入评论内容", @keyup.enter="submit")
+  #item-box-holder(v-show="box")
 </template>
 
 <script>
+var qs = require('querystring');
+
 export default {
   data: function() {
     return {
       data: {
         name: '',
         description: '',
+        hiwuUser: { avatar: '' },
         photos: [{ url: '' }],
-        comments: [],
-        hiwuUser: { avatar: '' }
-      }
+        comments: []
+      },
+      box: false,
+      comment: ''
     };
   },
   computed: {
@@ -48,15 +59,52 @@ export default {
       return date;
     }
   },
-  created: function (done) {
-    var self = this
-
-    self.$http.get(self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView', function (data, status, request) {
-      self.data = data;
-    });
+  created: function () {
+    this.refresh();
   },
   ready: function() {
     $('#item').height($(window).height());
+  },
+  methods: {
+    refresh: function() {
+      var self = this;
+
+      self.$http.get(self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView?' + qs.stringify({
+        access_token: self.$root.accessToken
+      }), function (data, status, request) {
+        self.data = data;
+      });
+    },
+    like: function() {
+      var self = this;
+
+      if (self.$root.userId) {
+        (self.data.liked ? self.$http.delete : self.$http.put).apply(self.$http, [
+          self.$root.apiUrl + '/HiwuUsers/' + self.$root.userId + '/likes/rel/' + self.data.id + '/?' + qs.stringify({
+            access_token: self.$root.accessToken
+          }),
+          self.refresh
+        ]);
+      }
+    },
+    toggle: function() {
+      this.box = !this.box;
+    },
+    submit: function() {
+      var self = this;
+      if (self.$root.userId) {
+        console.log(self.comment)
+
+        self.$http.post(self.$root.apiUrl + '/Items/' + self.data.id + '/comments?' + qs.stringify({
+          access_token: self.$root.accessToken
+        }), {
+          content: self.comment
+        }, self.refresh);
+
+        self.box = false;
+        self.comment = '';
+      }
+    }
   },
   components: {
     topbar: require('../components/Topbar.vue')
@@ -74,25 +122,38 @@ export default {
 
 #item-photo {
   position: relative;
-}
 
-#item-photo-header {
-  position: absolute;
-  top: 0;
-}
+  header {
+    position: absolute;
+    top: 0;
+  }
 
-#item-photo-footer {
-  position: absolute;
-  bottom: 0;
+  footer {
+    position: absolute;
+    bottom: 0;
 
-  .am-text-sm {
-    color: $grey-light;
-    background-color: rgba($grey-dark, 0.4);
+    .am-text-sm {
+      color: $grey-light;
+      background-color: rgba($grey-dark, 0.4);
+    }
   }
 }
 
 #item-desc {
   background-color: #A0E7EB;
-  span { color: $grey; }
+  span {
+    color: $grey;
+    cursor: pointer;
+  }
+}
+
+#item-box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#item-box-holder {
+  height: 33px;
 }
 </style>
