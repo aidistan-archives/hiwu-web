@@ -1,7 +1,7 @@
 <template lang="jade">
 #archive.view
   #archive-topbar
-    topbar(title="往期博物展", left-link="/today", has-border="true")
+    topbar(title="往期博物展", left-link="/today")
   #archive-content
     .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs 2015年
     gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery", :link="{ name: 'archive_gallery', params: { gallery_id: entry.gallery.id } }")

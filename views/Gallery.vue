@@ -1,15 +1,15 @@
 <template lang="jade">
 #gallery.view
   #gallery-topbar
-    topbar.am-margin-bottom(:left-link="{ path: '..' }")
-  #gallery-header.am-margin-sm
-    .am-g.am-margin-bottom
-      .am-u-sm-3.am-u-sm-centered
+    topbar.am-margin-bottom(:title="data.name", :left-link="{ path: '..' }")
+  #gallery-header.am-margin
+    .am-g.am-margin-vertical
+      .am-u-sm-5.am-u-sm-centered
         img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
-    p.am-text-lg.am-text-center {{ data.hiwuUser.nickname }}『{{ data.name }}』
-    p.am-text-xs {{ data.description }}
+    h2.am-margin-vertical.am-text-center {{ data.hiwuUser.nickname }}「{{ data.name }}」
+    p.am-text-sm {{ data.description }}
   #gallery-items
-    item.am-margin-sm(v-for="item in data.items", :data="item", :link="{ path: 'items/' + item.id, append: true }")
+    item.am-margin(v-for="item in data.items", :data="item", :link="{ path: 'items/' + item.id, append: true }")
   #gallery-child.view-wrapper
     router-view
 </template>
@@ -44,10 +44,15 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '../variables.scss';
+@import '../variables.scss';
 
 #gallery {
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+#gallery-header p.am-text-sm {
+  color: $grey;
+  text-align: justify;
 }
 </style>

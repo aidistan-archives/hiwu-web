@@ -8,7 +8,7 @@ Vue.use(Resource);
 
 // Routing
 var router = new Router({
-  history: true
+  // history: true
 });
 
 router.map({
@@ -36,14 +36,6 @@ router.map({
     name: 'today',
     component: require('./views/Today.vue'),
     subRoutes: {
-      '/oauthlogin': {
-        name: 'today_oauthLogin',
-        component: require('./views/OauthLogin.vue')
-      },
-      '/accountLogin': {
-        name: 'today_accountLogin',
-        component: require('./views/AccountLogin.vue')
-      },
       '/galleries/:gallery_id': {
         name: 'today_gallery',
         component: require('./views/Gallery.vue'),
@@ -57,10 +49,6 @@ router.map({
       '/items/:item_id': {
         name: 'today_item',
         component: require('./views/Item.vue')
-      },
-      '/me': {
-        name: 'today_me',
-        component: require('./views/Me.vue')
       }
     }
   },
@@ -77,42 +65,6 @@ router.map({
   '/items/:item_id': {
     name: 'item',
     component: require('./views/Item.vue')
-  },
-  '/mine': {
-    name: 'mine',
-    component: require('./views/Mine.vue'),
-    subRoutes: {
-      '/galleries/:gallery_id': {
-        name: 'mine_gallery',
-        component: require('./views/Gallery.vue'),
-        subRoutes: {
-          '/items/:item_id': {
-            name: 'mine_gallery_item',
-            component: require('./views/Item.vue')
-          }
-        }
-      },
-      '/items/:item_id': {
-        name: 'mine_item',
-        component: require('./views/Item.vue')
-      },
-      '/me': {
-        name: 'mine_me',
-        component: require('./views/Me.vue')
-      }
-    }
-  }
-});
-
-router.beforeEach(function(transition) {
-  if (/^\/mine/.test(transition.to.path)) {
-    if (router.app.userId) {
-      transition.next();
-    } else {
-      transition.abort();
-    }
-  } else {
-    transition.next();
   }
 });
 

@@ -20,7 +20,7 @@ export default {
       if (false) {
         return window.location.protocol + '//' + window.location.host + '/api';
       } else {
-        return 'http://palace.server.hiwu.ren/api';
+        return 'http://hiwu.ren/api';
       }
     }
   },
@@ -70,7 +70,7 @@ body {
 }
 
 .view {
-  background-color: $grey-lighter;
+  background-image: url('/background.jpg');
 }
 
 .view-wrapper {

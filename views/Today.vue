@@ -1,11 +1,20 @@
 <template lang="jade">
 #today.view
-  #today-topbar
-    topbar(title="每日博物展", left-link="/archive", left-icon="bars", has-border="true")
-    a.am-round.am-margin-sm(v-link="rightLink")
-      img(src="/logo-48.png", alt="登陆", width="25.6", height="25.6")
+  #gallery-topbar
+    topbar(title="每日博物展", left-link="/archive", left-icon="bars")
+  #gallery-banner
+    .css56cffdd6423.am-text-lg.am-text-center.am-margin-vertical-xl
+      span 物境未觉，与您一起发现时光里的珍物
+      br
+      span 共建游历初心的物件文化
+      br
+      span 感受万物欢喜，体会万物动情
+    #today-apply.am-text-center.am-margin-vertical-xl
+      span.am-padding.am-padding-horizontal-lg
+        img.am-margin-right-xs(src="/logo-48.png", alt="申请", width="32", height="32")
+        span.am-padding-right-lg 申请建立我的博物馆
   #today-galleries
-    gallery.am-margin-sm.am-margin-bottom(v-for="entry in data", :data="entry.gallery")
+    gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
   #today-child.view-wrapper
     router-view
 </template>
@@ -16,11 +25,6 @@ export default {
     return {
       data: {}
     };
-  },
-  computed: {
-    rightLink: function() {
-      return { name: this.$root.userId ? 'today_me' : 'today_oauthLogin' };
-    }
   },
   created: function(done) {
     var self = this
@@ -47,14 +51,8 @@ export default {
   overflow-y: scroll;
 }
 
-#today-topbar {
-  position: relative;
-
-  a:last-child {
-    background: $primary;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+#today-apply > span {
+  background-image: url('/btn-background.png');
+  background-size: 100% 100%;
 }
 </style>
