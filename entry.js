@@ -16,6 +16,10 @@ router.map({
     name: 'home',
     component: require('./views/Home.vue')
   },
+  '/apply': {
+    name: 'apply',
+    component: require('./views/Apply.vue')
+  },
   '/archive': {
     name: 'archive',
     component: require('./views/Archive.vue'),
