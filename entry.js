@@ -8,7 +8,7 @@ Vue.use(Resource);
 
 // Routing
 var router = new Router({
-  // history: true
+  history: true
 });
 
 router.map({
