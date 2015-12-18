@@ -2,7 +2,7 @@
 .topbar
   .am-text-center.am-padding-sm.font-csjzbk {{ title }}
     a.am-fl.am-icon-fw(v-show="leftLink", v-link="leftLink", :class="['am-icon-' + leftIcon]")
-    a.am-fr(v-link="{ name: 'apply' }")
+    a.am-fr(v-link="{ name: 'apply' }", :style="{ visibility: rightIcon ? 'visible' : 'hidden' }")
       img(src="/logo-primary-48.png", alt="申请", width="25.6", height="25.6")
 </template>
 
@@ -19,6 +19,9 @@ export default {
     leftIcon: {
       type: String,
       default: 'chevron-left'
+    },
+    rightIcon: {
+      default: false
     }
   }
 }

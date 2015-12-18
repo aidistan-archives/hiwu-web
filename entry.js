@@ -16,10 +16,6 @@ router.map({
     name: 'home',
     component: require('./views/Home.vue')
   },
-  '/apply': {
-    name: 'apply',
-    component: require('./views/Apply.vue')
-  },
   '/archive': {
     name: 'archive',
     component: require('./views/Archive.vue'),
@@ -40,6 +36,10 @@ router.map({
     name: 'today',
     component: require('./views/Today.vue'),
     subRoutes: {
+      '/apply': {
+        name: 'apply',
+        component: require('./views/Apply.vue')
+      },
       '/galleries/:gallery_id': {
         name: 'today_gallery',
         component: require('./views/Gallery.vue'),

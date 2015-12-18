@@ -1,7 +1,7 @@
 <template lang="jade">
 #today.view
   #gallery-topbar
-    topbar(title="每日博物展", left-link="/archive", left-icon="bars")
+    topbar(title="每日博物展", left-link="/archive", left-icon="bars", :right-icon="true")
   #gallery-banner
     .css56cffdd6423.am-text-lg.am-text-center.am-margin-vertical-xl
       span 物境未觉，与您一起发现时光里的珍物
