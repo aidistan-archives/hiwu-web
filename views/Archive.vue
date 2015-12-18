@@ -3,8 +3,9 @@
   #archive-topbar
     topbar(title="往期博物展", left-link="/today")
   #archive-content
-    .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs 2015年
-    gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery", :link="{ name: 'archive_gallery', params: { gallery_id: entry.gallery.id } }")
+    template(v-for="(date, galleries) in data")
+      .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
+      gallery.am-margin-sm(v-for="gallery in galleries", :data="gallery", :link="{ name: 'archive_gallery', params: { gallery_id: gallery.id } }")
   #archive-child.view-wrapper
     router-view
 </template>
@@ -17,10 +18,15 @@ export default {
     };
   },
   created: function (done) {
-    var self = this
+    var self = this;
 
     self.$http.get(self.$root.apiUrl + '/Today/publicView', function (data, status, request) {
-      self.data = data;
+      self.data = {};
+      for (var entry of data) {
+        var date = entry.date_y + '年' + entry.date_m + '月';
+        if (self.data[date] === undefined) self.data[date] = [];
+        self.data[date].push(entry.gallery);
+      }
     });
   },
   ready: function() {
