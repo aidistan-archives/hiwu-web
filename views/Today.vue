@@ -14,7 +14,12 @@
         img.am-margin-right-xs(src="/logo-48.png", alt="申请", width="32", height="32")
         span.am-padding-right-lg 申请建立我的博物馆
   #today-galleries
-    gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
+    template(v-if="data.length > 0")
+      gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
+    template(v-else)
+      .am-text-center.am-margin-xl.am-padding-xl
+        i.am-icon-spinner.am-icon-spin.am-icon-lg.am-margin-top-xl
+        h3 正在努力加载中...
   #today-child.view-wrapper
     router-view
 </template>
