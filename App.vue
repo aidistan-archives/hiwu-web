@@ -66,10 +66,12 @@ export default {
 @import './variables.scss';
 
 body {
-  background-color: $grey-lighter;
+  background-color: black;
 }
 
 .view {
+  max-width: 540px;
+  margin: 0 auto;
   background-image: url('/background.jpg');
 }
 
