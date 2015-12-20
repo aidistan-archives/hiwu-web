@@ -7,7 +7,7 @@
     footer.am-padding-xs(v-if="data.photos.length > 1")
       .am-g.am-g-collapse
         .am-u-sm-2.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
-          img.am-img-responsive(:src="photo.url", @click="change(photo.url)")
+          image-square(:src="photo.url", @click="change(photo.url)")
   #item-desc.am-margin.am-margin-top-xl
     h2.am-margin-bottom-sm {{ data.name }}
     .am-text-xs {{ date }}
@@ -62,7 +62,8 @@ export default {
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue')
+    topbar: require('../components/Topbar.vue'),
+    'image-square': require('../components/ImageSquare.vue'),
   }
 }
 </script>

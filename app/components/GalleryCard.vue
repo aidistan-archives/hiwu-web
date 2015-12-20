@@ -9,7 +9,7 @@
         .am-vertical-align-middle {{ data.hiwuUser.nickname }}「{{ data.name }}」
     .am-g.am-g-collapse
       .am-u-sm-4.am-u-end(v-for="item in featureItems", style="padding: 1px;")
-        .img-wrapper(:style="{ backgroundImage: 'url(' + item.photos[0].url + ')' }", v-link="{ path: 'items/' + item.id, append: true }")
+        image-square(:src="item.photos[0].url", :href="{ path: 'items/' + item.id, append: true }")
 </template>
 
 <script>
@@ -20,8 +20,8 @@ export default {
       return this.data.items.slice(0, 9);
     }
   },
-  attached: function() {
-    $('.gallery-card .am-u-sm-4').height($('.gallery-card .am-u-sm-4').width());
+  components: {
+    'image-square': require('../components/ImageSquare.vue')
   }
 }
 </script>
@@ -37,14 +37,6 @@ export default {
   header {
     img { max-height: 40px; }
     .am-fr { color: $grey; }
-  }
-
-  .img-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
   }
 }
 </style>

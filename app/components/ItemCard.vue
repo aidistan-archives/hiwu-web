@@ -1,7 +1,7 @@
 <template lang="jade">
 .item-card.am-cf.am-text-xs
   a(v-link="link")
-    img.am-img-responsive.am-fl(:src="data.photos[0].url")
+    image-square.am-fl(:src="data.photos[0].url", :href="link")
     .name.am-text-sm.am-fl(:style="textStyle") {{ data.name }}
     .desc.am-text-xs.am-fl(:style="textStyle") {{ short_desc }}
 </template>
@@ -28,9 +28,12 @@ export default {
     var self = this;
 
     setTimeout(function() {
-      self.textStyle.width = $('.item-card').width() - $('.item-card img').width() + 'px';
+      self.textStyle.width = $('.item-card').width() - $('.item-card .image-square').width() + 'px';
       self.textStyle.visibility = 'visible';
     }, 50);
+  },
+  components: {
+    'image-square': require('../components/ImageSquare.vue')
   }
 }
 </script>
@@ -42,7 +45,7 @@ export default {
   background-color: #fff;
 
   > a { color: inherit; }
-  img { width: 10em; height: 10em; }
+  .image-square { width: 10em; height: 10em; }
   .name {
     font-weight: bold;
     padding: 0.75em;
