@@ -8,7 +8,7 @@ Vue.use(Resource);
 
 // Routing
 var router = new Router({
-  history: true
+  history: process.env.NODE_ENV === 'development' ? false : true
 });
 
 router.map({

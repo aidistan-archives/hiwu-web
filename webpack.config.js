@@ -37,3 +37,29 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
   ]
 };
+
+if (process.env.NODE_ENV === 'development') {
+  // module.exports.devtool = '#source-map';
+  module.exports.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    })
+  );
+}
+else if (process.env.NODE_ENV === 'production') {
+  module.exports.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  );
+}

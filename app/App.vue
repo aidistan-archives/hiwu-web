@@ -16,11 +16,10 @@ export default {
   },
   computed: {
     apiUrl: function() {
-      // Extract the api url from window.location or give it directly
-      if (false) {
-        return window.location.protocol + '//' + window.location.host + '/api';
-      } else {
+      if (process.env.NODE_ENV === 'development') {
         return 'http://hiwu.ren/api';
+      } else {
+        return window.location.protocol + '//' + window.location.host + '/api';
       }
     }
   },

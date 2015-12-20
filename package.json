@@ -7,8 +7,8 @@
     "url": "https://github.com/hiwu/hiwu-web.git"
   },
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack-dev-server --inline --hot --quiet --host 0.0.0.0 --content-base static/"
+    "build": "NODE_ENV=production webpack",
+    "watch": "NODE_ENV=development webpack-dev-server --inline --hot --quiet --host 0.0.0.0 --content-base static/"
   },
   "dependencies": {
     "es6-promise": "^3.0.2",
@@ -35,5 +35,5 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
-  "license": ""
+  "license": "MIT"
 }
