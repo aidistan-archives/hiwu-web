@@ -11,7 +11,7 @@
       span 感受万物欢喜，体会万物动情
     #today-apply.am-text-center.am-margin-vertical-xl(v-link="{ name: 'apply' }")
       span.am-padding.am-padding-horizontal-lg
-        img.am-margin-right-xs(src="/logo-48.png", alt="申请", width="32", height="32")
+        img.am-margin-right-xs(src="../assets/logo-black-48.png", alt="申请", width="32", height="32")
         span.am-padding-right-lg 申请建立我的博物馆
   #today-galleries
     template(v-if="data.length > 0")
@@ -60,7 +60,7 @@ export default {
   cursor: pointer;
 
   span {
-    background-image: url('/btn-background.png');
+    background-image: url('../assets/btn-background.png');
     background-size: 100% 100%;
   }
 }

@@ -2,5 +2,7 @@
 node_modules
 
 # Ignore built files
-static/bundle.js
-static/vendor.bundle.js
+static/*.png
+static/*.jpg
+static/*.gif
+static/*.js

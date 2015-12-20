@@ -1,7 +1,7 @@
 {
-  "name": "hiwu-spa",
+  "name": "hiwu-web",
   "version": "0.3.0",
-  "description": "Hiwu single-page application",
+  "description": "Hiwu web application",
   "repository": {
     "type": "git",
     "url": "https://github.com/hiwu/hiwu-web.git"
@@ -28,10 +28,12 @@
     "sass-loader": "^3.1.1",
     "style-loader": "^0.13.0",
     "template-html-loader": "0.0.3",
+    "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.1",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^6.0.4",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
-  }
+  },
+  "license": ""
 }

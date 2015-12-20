@@ -72,7 +72,7 @@ body {
 .view {
   max-width: 540px;
   margin: 0 auto;
-  background-image: url('/background.jpg');
+  background-image: url('./assets/background.jpg');
 }
 
 .view-wrapper {
