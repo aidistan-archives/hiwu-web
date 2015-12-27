@@ -1,5 +1,5 @@
 <template lang="jade">
-.image-square(:style="style", v-link="href")
+a.image-square(:style="style", v-link="href")
 </template>
 
 <script>
@@ -29,8 +29,8 @@ export default {
 <style lang="scss" scoped>
 @import '../variables.scss';
 
-.image-square
-{
+.image-square {
+  display: block;
   position: relative;
 
   width: 100%;

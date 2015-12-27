@@ -1,8 +1,8 @@
 <template lang="jade">
-#today.view
-  #gallery-topbar
-    topbar(title="每日博物展", left-link="/archive", left-icon="bars", :right-icon="true")
-  #gallery-banner
+#today
+  #today-topbar
+    topbar(title="每日博物展", :left-link="{ name: 'archive' }", left-icon="bars")
+  #today-banner
     .css56cffdd6423.am-text-lg.am-text-center.am-margin-vertical-xl
       span 物境未觉，与您一起发现时光里的珍物
       br
@@ -13,33 +13,28 @@
       span.am-padding.am-padding-horizontal-lg
         img.am-margin-right-xs(src="../assets/logo-black-48.png", alt="申请", width="32", height="32")
         span.am-padding-right-lg 申请建立我的博物馆
-  #today-galleries
-    template(v-if="data.length > 0")
+  #today-galleries.am-container
+    template(v-if="data !== null")
       gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
     template(v-else)
       .am-text-center.am-margin-xl.am-padding-xl
         i.am-icon-spinner.am-icon-spin.am-icon-lg.am-margin-top-xl
         h3 正在努力加载中...
-  #today-child.view-wrapper
-    router-view
 </template>
 
 <script>
 export default {
   data: function() {
     return {
-      data: {}
+      data: null
     };
   },
   created: function(done) {
     var self = this
 
     self.$http.get(self.$root.apiUrl + '/Today/publicView', function (data, status, request) {
-      self.data = data;
+      self.data = data.slice(0, 5);
     });
-  },
-  ready: function() {
-    $('#today').height($(window).height());
   },
   components: {
     topbar: require('../components/Topbar.vue'),
@@ -50,11 +45,6 @@ export default {
 
 <style lang="scss">
 @import '../variables.scss';
-
-#today {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
 
 #today-apply {
   cursor: pointer;

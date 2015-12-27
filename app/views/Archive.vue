@@ -1,13 +1,13 @@
 <template lang="jade">
-#archive.view
+#archive
   #archive-topbar
-    topbar(title="往期博物展", left-link="/today")
-  #archive-content
+    topbar(title="往期博物展", :left-link="{ name: 'today' }")
+  #archive-content.am-container
     template(v-for="(date, galleries) in data")
       .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
-      gallery.am-margin-sm(v-for="gallery in galleries", :data="gallery", :link="{ name: 'archive_gallery', params: { gallery_id: gallery.id } }")
-  #archive-child.view-wrapper
-    router-view
+      .am-g.am-g-collapse
+        .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
+          gallery.am-margin-sm(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
 </template>
 
 <script>
@@ -29,9 +29,6 @@ export default {
       }
     });
   },
-  ready: function() {
-    $('#archive').height($(window).height());
-  },
   components: {
     topbar: require('../components/Topbar.vue'),
     gallery: require('../components/GalleryLine.vue')
@@ -41,11 +38,6 @@ export default {
 
 <style lang="scss">
 @import '../variables.scss';
-
-#archive {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
 
 .archive-date {
   color: $grey;

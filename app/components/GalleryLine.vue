@@ -1,21 +1,27 @@
 <template lang="jade">
-.gallery-line.am-padding-horizontal-sm.am-padding-vertical-xs
-  a(v-link="link")
-    header.am-cf
-      img.am-img-responsive.am-circle.am-fl.am-margin-right(:src="data.hiwuUser.avatar")
-      .am-vertical-align.am-fr(style="height: 40px;")
-        .am-vertical-align-middle.am-text-sm(style="padding-top: 3px;") {{ data.items.length }} 件
-      .am-vertical-align(style="height: 40px;")
-        .am-vertical-align-middle {{ data.hiwuUser.nickname }}「{{ data.name }}」
+a.gallery-line.am-padding-horizontal-sm.am-padding-vertical-xs.am-cf(v-link="link")
+  img.am-img-responsive.am-circle.am-fl(:src="data.hiwuUser.avatar")
+  .am-vertical-align.am-fl
+    .title.am-vertical-align-middle.am-padding-horizontal(:style='titleStyle') {{ title }}
+  .am-vertical-align.am-fr
+    .badge.am-vertical-align-middle.am-text-sm {{ data.items.length }} 件
 </template>
 
 <script>
 export default {
+  data: function() {
+    return {
+      titleStyle: { width: '0px' }
+    };
+  },
   props: ['data', 'link'],
   computed: {
-    featureItems: function() {
-      return this.data.items.slice(0, 9);
+    title: function() {
+      return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
     }
+  },
+  attached: function() {
+    this.titleStyle.width = $(this.$el).find('.am-fr').position().left - $(this.$el).find('.am-vertical-align.am-fl').position().left + 'px';
   }
 }
 </script>
@@ -24,13 +30,22 @@ export default {
 @import '../variables.scss';
 
 .gallery-line {
+  display: block;
+
+  color: inherit;
   background-color: #fff;
 
-  > a { color: inherit; }
+  img, .am-vertical-align { height: 40px; }
 
-  header {
-    img { max-height: 40px; }
-    .am-fr { color: $grey; }
+  .title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .badge {
+    color: $grey;
+    padding-top: 3px;
   }
 }
 </style>

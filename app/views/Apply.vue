@@ -1,8 +1,8 @@
 <template lang="jade">
-#apply.view
+#apply
   #apply-topbar
     topbar(title="申请建立我的博物馆", :left-link="{ name: 'today' }")
-  #apply-form.am-margin
+  #apply-form.am-container.am-margin-top
     p 请填写博物馆的相关信息：
     .am-form-group
       input.am-form-field.am-radius(v-model="title", placeholder="博物馆名称")

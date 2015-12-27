@@ -1,14 +1,14 @@
 <template lang="jade">
-#item.view
+#item
   #item-topbar
-    topbar.am-margin-bottom(:title="data.name", :left-link="{ path: '..' }")
-  #item-photo.am-margin
+    topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'gallery', params: { gallery_id: data.galleryId } }")
+  #item-photo.am-container
     img.am-img-responsive.am-center(:src="photo")
     footer.am-padding-xs(v-if="data.photos.length > 1")
-      .am-g.am-g-collapse
-        .am-u-sm-2.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
+      .am-g.am-g-collapse.am-margin-horizontal
+        .am-u-sm-2.am-u-lg-1.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
           image-square(:src="photo.url", @click="change(photo.url)")
-  #item-desc.am-margin.am-margin-top-xl
+  #item-desc.am-container.am-margin-top-xl
     h2.am-margin-bottom-sm {{ data.name }}
     .am-text-xs {{ date }}
     .am-text-xs {{ data.city }}
@@ -78,6 +78,8 @@ export default {
 
 #item-photo {
   position: relative;
+
+  img { width: 100%; }
 
   footer {
     position: absolute;

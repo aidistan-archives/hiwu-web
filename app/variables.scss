@@ -6,12 +6,3 @@ $grey-dark:    #303030;
 $grey:         #808080;
 $grey-light:   #cecece;
 $grey-lighter: #efefef;
-
-
-@mixin layer {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-@mixin layer-fl { @include layer; left: 0; }
-@mixin layer-fr { @include layer; right: 0; }

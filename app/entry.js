@@ -8,7 +8,8 @@ Vue.use(Resource);
 
 // Routing
 var router = new Router({
-  history: process.env.NODE_ENV === 'development' ? false : true
+  history: process.env.NODE_ENV === 'development' ? false : true,
+  saveScrollPosition: true
 });
 
 router.map({
@@ -22,49 +23,15 @@ router.map({
   },
   '/archive': {
     name: 'archive',
-    component: require('./views/Archive.vue'),
-    subRoutes: {
-      '/galleries/:gallery_id': {
-        name: 'archive_gallery',
-        component: require('./views/Gallery.vue'),
-        subRoutes: {
-          '/items/:item_id': {
-            name: 'archive_gallery_item',
-            component: require('./views/Item.vue')
-          }
-        }
-      }
-    }
+    component: require('./views/Archive.vue')
   },
   '/today': {
     name: 'today',
-    component: require('./views/Today.vue'),
-    subRoutes: {
-      '/galleries/:gallery_id': {
-        name: 'today_gallery',
-        component: require('./views/Gallery.vue'),
-        subRoutes: {
-          '/items/:item_id': {
-            name: 'today_gallery_item',
-            component: require('./views/Item.vue')
-          }
-        }
-      },
-      '/items/:item_id': {
-        name: 'today_item',
-        component: require('./views/Item.vue')
-      }
-    }
+    component: require('./views/Today.vue')
   },
   '/galleries/:gallery_id': {
     name: 'gallery',
-    component: require('./views/Gallery.vue'),
-    subRoutes: {
-      '/items/:item_id': {
-        name: 'gallery_item',
-        component: require('./views/Item.vue')
-      }
-    }
+    component: require('./views/Gallery.vue')
   },
   '/items/:item_id': {
     name: 'item',

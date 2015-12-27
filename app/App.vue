@@ -65,16 +65,10 @@ export default {
 @import './variables.scss';
 
 body {
-  background-color: black;
-}
-
-.view {
-  max-width: 540px;
-  margin: 0 auto;
   background-image: url('./assets/background.jpg');
 }
 
-.view-wrapper {
-  @include layer-fl;
+.am-container {
+  max-width: 1200px;
 }
 </style>

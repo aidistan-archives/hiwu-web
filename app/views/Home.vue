@@ -69,6 +69,7 @@ export default {
 
       var lastWheelTimeStamp;
       $('body').on('wheel', function(e) {
+        if ($('#home').length === 0) return;
         if (!lastWheelTimeStamp || e.timeStamp - lastWheelTimeStamp > 500) {
           lastWheelTimeStamp = e.timeStamp;
           if (e.originalEvent.deltaY > 0) {
@@ -121,7 +122,6 @@ export default {
 
 #home {
   width: 100%;
-  background-image: url('../assets/background.jpg');;
 
   .slide { position: relative; }
   @media screen and (min-width: 641px) { .slide { padding: 40px; } }
