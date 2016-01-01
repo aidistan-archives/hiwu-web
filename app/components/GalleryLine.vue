@@ -1,10 +1,11 @@
 <template lang="jade">
 a.gallery-line.am-padding-horizontal-sm.am-padding-vertical-xs.am-cf(v-link="link")
-  img.am-img-responsive.am-circle.am-fl(:src="data.hiwuUser.avatar")
-  .am-vertical-align.am-fl
-    .title.am-vertical-align-middle.am-padding-horizontal(:style='titleStyle') {{ title }}
-  .am-vertical-align.am-fr
-    .badge.am-vertical-align-middle.am-text-sm {{ data.items.length }} 件
+  .thumb.am-fl
+    img.am-img-responsive.am-circle.am-fl(:src="data.hiwuUser.avatar")
+  .title.am-vertical-align.am-fl.am-margin-horizontal-sm(:style='titleStyle')
+    span.am-vertical-align-middle {{ title }}
+  .badge.am-vertical-align.am-fr
+    span.am-vertical-align-middle.am-text-sm {{ data.items.length }} 件
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
     }
   },
   attached: function() {
-    this.titleStyle.width = $(this.$el).find('.am-fr').position().left - $(this.$el).find('.am-vertical-align.am-fl').position().left + 'px';
+    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 4 + 'px';
   }
 }
 </script>
@@ -35,17 +36,19 @@ export default {
   color: inherit;
   background-color: #fff;
 
-  img, .am-vertical-align { height: 40px; }
+  .thumb, .badge { width: 40px; }
+  .thumb, .title, .badge { height: 40px; }
 
-  .title {
+  .title span {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .badge {
-    color: $grey;
+  .badge span{
     padding-top: 3px;
+    text-align: right;
+    color: $grey;
   }
 }
 </style>
