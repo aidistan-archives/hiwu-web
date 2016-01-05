@@ -6,4 +6,4 @@ static/*.png
 static/*.jpg
 static/*.gif
 static/*.js
-# static/*.js.map
+static/*.js.map
