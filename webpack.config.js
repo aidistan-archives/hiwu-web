@@ -38,17 +38,7 @@ module.exports = {
   ]
 };
 
-if (process.env.NODE_ENV === 'development') {
-  // module.exports.devtool = '#source-map';
-  module.exports.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
-    })
-  );
-}
-else if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {
@@ -61,5 +51,15 @@ else if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin()
+  );
+}
+else {
+  // module.exports.devtool = '#source-map';
+  module.exports.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    })
   );
 }
