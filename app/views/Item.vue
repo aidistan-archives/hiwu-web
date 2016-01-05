@@ -2,17 +2,18 @@
 #item
   #item-topbar
     topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'gallery', params: { gallery_id: data.galleryId } }")
-  #item-photo.am-container
-    img.am-img-responsive.am-center(:src="photo")
-    footer.am-padding-xs(v-if="data.photos.length > 1")
-      .am-g.am-g-collapse.am-margin-horizontal
-        .am-u-sm-2.am-u-lg-1.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
-          image-square(:src="photo.url", @click="change(photo.url)")
-  #item-desc.am-container.am-margin-top-xl
-    h2.am-margin-bottom-sm {{ data.name }}
-    .am-text-xs {{ date }}
-    .am-text-xs {{ data.city }}
-    p.am-text-sm.am-margin-top-sm {{ data.description }}
+  .am-container
+    .am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered
+      #item-photo
+        img.am-img-responsive.am-center(:src="photo")
+        footer.am-g.am-g-collapse.am-padding-xs(v-if="data.photos.length > 1")
+          .am-u-sm-2.am-u-lg-1.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
+            image-square(:src="photo.url", @click="change(photo.url)")
+      #item-desc.am-margin-top-xl
+        h2.am-margin-bottom-sm {{ data.name }}
+        .am-text-xs {{ date }}
+        .am-text-xs {{ data.city }}
+        p.am-text-sm.am-margin-top-sm {{ data.description }}
 </template>
 
 <script>
@@ -86,14 +87,8 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
-
-    img {
-      cursor: pointer;
-    }
   }
 }
 
-#item-desc p {
-  color: $grey;
-}
+#item-desc p { color: $grey; }
 </style>
