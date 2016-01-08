@@ -32,8 +32,8 @@ export default {
   created: function(done) {
     var self = this
 
-    self.$http.get(self.$root.apiUrl + '/Today/publicView', function (data, status, request) {
-      self.data = data.slice(0, 5);
+    self.$http.get(self.$root.apiUrl + '/SelectedGalleries/publicView', function (data, status, request) {
+      self.data = data.slice(0, 8);
     });
   },
   components: {
