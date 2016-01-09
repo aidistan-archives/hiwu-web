@@ -26,7 +26,7 @@ export default {
     }
   },
   attached: function() {
-    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 12 + 'px';
+    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 10 - 1 + 'px';
   },
   components: {
     'image-square': require('../components/ImageSquare.vue')

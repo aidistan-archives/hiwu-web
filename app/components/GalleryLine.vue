@@ -22,7 +22,7 @@ export default {
     }
   },
   attached: function() {
-    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 4 + 'px';
+    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 1 + 'px';
   }
 }
 </script>
