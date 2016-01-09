@@ -43,4 +43,8 @@ router.redirect({
   '*': '/'
 });
 
+router.afterEach(function (transition) {
+  _hmt.push(['_trackPageview', window.location]);
+});
+
 router.start(require('./App.vue'), '#app');
