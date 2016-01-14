@@ -8,9 +8,9 @@
       h3.am-margin-top-xl 正在努力加载中...
     template(v-if="!$loadingRouteData", v-for="(date, galleries) in data")
       .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
-      .am-g.am-g-collapse
+      .am-g
         .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
-          gallery.am-margin-sm(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
+          gallery.am-margin-bottom-sm(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
 </template>
 
 <script>

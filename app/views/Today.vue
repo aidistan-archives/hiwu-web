@@ -17,7 +17,7 @@
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
       i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
-    template(v-if="!$loadingRouteData")
+    .am-g.am-g-collapse(v-else)
       gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
 </template>
 
