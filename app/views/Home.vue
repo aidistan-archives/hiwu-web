@@ -60,6 +60,20 @@ export default {
         $('#home-slide-1').find('img:last-child').position().top + 'px'
     };
   },
+  route: {
+    activate: function (transition) {
+      this.$root.configJweixin({
+        share_content: {
+          title: '物境未觉',
+          desc: '物境未觉，与您一起发现时光里的珍物，共建游历初心的物件文化，感受万物欢喜，体会万物动情！',
+          link: window.location.toString(),
+          imgUrl: 'http://palace.server.hiwu.ren/logo-black-1024.png'
+        }
+      });
+
+      transition.next();
+    }
+  },
   methods: {
     initSlides: function() {
       var self = this;

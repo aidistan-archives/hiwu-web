@@ -66,7 +66,6 @@ export default {
         url: window.location.toString().split('#')[0]
       }), function (data, status, request) {
         wx.config($.extend(data, {
-          debug: true,
           jsApiList: [
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
