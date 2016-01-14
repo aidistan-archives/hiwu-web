@@ -3,6 +3,8 @@ router-view
 </template>
 
 <script>
+var qs = require('querystring');
+
 export default {
   data: function() {
     return {
@@ -56,6 +58,34 @@ export default {
         }
       }
       return null;
+    },
+    configJweixin: function(options) {
+      var self = this;
+
+      self.$http.get(self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
+        url: window.location.toString().split('#')[0]
+      }), function (data, status, request) {
+        wx.config($.extend(data, {
+          debug: true,
+          jsApiList: [
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone'
+          ]
+        }));
+
+        wx.ready(function() {
+          if (options.share_content) {
+            wx.onMenuShareTimeline(options.share_content);
+            wx.onMenuShareAppMessage(options.share_content);
+            wx.onMenuShareQQ(options.share_content);
+            wx.onMenuShareWeibo(options.share_content);
+            wx.onMenuShareQZone(options.share_content);
+          }
+        });
+      });
     }
   }
 }
