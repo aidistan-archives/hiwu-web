@@ -22,7 +22,7 @@ export default {
   data: function() {
     return {
       data: {
-        name: '',
+        name: '加载中...',
         description: '',
         items: [],
         hiwuUser: { nickname: '', avatar: '' }
