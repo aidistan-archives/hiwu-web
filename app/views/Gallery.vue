@@ -2,16 +2,20 @@
 #gallery
   #gallery-topbar
     topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'today' }")
-  #gallery-header.am-container
-    .am-g.am-margin-vertical
-      .am-u-sm-5.am-u-sm-centered
-        img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
-    .am-u-sm-12
-      h2.am-margin-vertical.am-text-center {{ title }}
-      p.am-text-sm {{ data.description }}
-  #gallery-items.am-container.am-g-collapse
-    .am-u-sm-12.am-u-lg-6.am-u-end(v-for="item in data.items")
-      item.am-margin-xs(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
+  .am-text-center.am-margin-xl(v-if="$loadingRouteData")
+    i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+    h3.am-margin-top-xl 正在努力加载中...
+  template(v-else)
+    #gallery-header.am-container
+      .am-g.am-margin-vertical
+        .am-u-sm-5.am-u-sm-centered
+          img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
+      .am-u-sm-12
+        h2.am-margin-vertical.am-text-center {{ title }}
+        p.am-text-sm {{ data.description }}
+    #gallery-items.am-container.am-g-collapse
+      .am-u-sm-12.am-u-lg-6.am-u-end(v-for="item in data.items")
+        item.am-margin-xs(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
 </template>
 
 <script>
@@ -22,7 +26,7 @@ export default {
         name: '',
         description: '',
         items: [],
-        hiwuUser: { avatar: '' }
+        hiwuUser: { nickname: '', avatar: '' }
       }
     };
   },

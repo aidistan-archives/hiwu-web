@@ -14,12 +14,11 @@
         img.am-margin-right-xs(src="../assets/logo-black-48.png", alt="申请", width="32", height="32")
         span.am-padding-right-lg 申请建立我的博物馆
   #today-galleries.am-container
-    template(v-if="data !== null")
+    .am-text-center.am-margin-xl(v-if="$loadingRouteData")
+      i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+      h3.am-margin-top-xl 正在努力加载中...
+    template(v-if="!$loadingRouteData")
       gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
-    template(v-else)
-      .am-text-center.am-margin-xl.am-padding-xl
-        i.am-icon-spinner.am-icon-spin.am-icon-lg.am-margin-top-xl
-        h3 正在努力加载中...
 </template>
 
 <script>
@@ -47,9 +46,9 @@ export default {
 
       self.$http.get(self.$root.apiUrl + '/SelectedGalleries/publicView', function(data, status, request) {
         self.data = data.slice(0, 8);
-      });
 
-      transition.next();
+        transition.next();
+      });
     }
   },
   components: {

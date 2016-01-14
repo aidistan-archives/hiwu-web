@@ -3,7 +3,10 @@
   #archive-topbar
     topbar(title="往期博物展", :left-link="{ name: 'today' }")
   #archive-content.am-container
-    template(v-for="(date, galleries) in data")
+    .am-text-center.am-margin-xl(v-if="$loadingRouteData")
+      i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+      h3.am-margin-top-xl 正在努力加载中...
+    template(v-if="!$loadingRouteData", v-for="(date, galleries) in data")
       .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
       .am-g.am-g-collapse
         .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
