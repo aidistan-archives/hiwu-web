@@ -45,7 +45,7 @@ export default {
           share_content: {
             title: self.title + ' - 物境未觉',
             desc: self.data.description,
-            link: window.location.toString(),
+            link: window.location.href,
             imgUrl: self.data.hiwuUser.avatar
           }
         });

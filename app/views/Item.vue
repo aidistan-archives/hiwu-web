@@ -60,7 +60,7 @@ export default {
           share_content: {
             title: self.data.name + ' - 物境未觉',
             desc: self.data.description.toString(),
-            link: window.location.toString(),
+            link: window.location.href,
             imgUrl: self.photo + '@!200x200'
           }
         });

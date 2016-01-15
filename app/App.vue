@@ -63,7 +63,7 @@ export default {
       var self = this;
 
       self.$http.get(self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
-        url: window.location.toString().split('#')[0]
+        url: window.location.href.split('#')[0]
       }), function (data, status, request) {
         wx.config($.extend(data, {
           jsApiList: [
