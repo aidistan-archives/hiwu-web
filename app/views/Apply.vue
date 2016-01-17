@@ -19,11 +19,6 @@
     .am-form-group
       input.am-form-field.am-radius(v-model="email", placeholder="邮箱")
     button.am-btn.am-btn-block.am-btn-lg(@click="submit") 立即申请
-  #apply-modal.am-modal.am-modal-no-btn(tabindex="-1")
-    .am-modal-dialog
-      .am-modal-hd {{ modalTitle }}
-        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close="true") &times;
-      .am-modal-bd
 </template>
 
 <script>
@@ -35,8 +30,7 @@ export default {
       weixin: '',
       weibo: '',
       mobile: '',
-      email: '',
-      modalTitle: ''
+      email: ''
     };
   },
   route: {
@@ -69,13 +63,11 @@ export default {
         email: self.email
       }, function (data, status, request) {
         if (data.id && data.room) {
-          self.modalTitle = '申请提交成功';
+          self.$root.popup('申请提交成功');
+          self.$route.router.go({ name: 'today' });
         } else {
-          self.modalTitle = '请填写完整信息';
+          self.$root.popup('请填写完整信息');
         }
-        $('#apply-modal').modal({
-          closeViaDimmer: 0
-        });
       });
     }
   },

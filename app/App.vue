@@ -1,5 +1,10 @@
 <template lang="jade">
 router-view(transition="ease")
+#modal.am-modal.am-modal-no-btn(tabindex="-1")
+  .am-modal-dialog
+    .am-modal-hd {{ modalTitle }}
+      a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close="true") &times;
+    .am-modal-bd
 </template>
 
 <script>
@@ -13,7 +18,8 @@ export default {
       oauth2: {
         weixin: 'wx92f55323cbadd8e8',
         weibo: '3167931574'
-      }
+      },
+      modalTitle: ''
     };
   },
   computed: {
@@ -30,6 +36,12 @@ export default {
     this.accessToken = this.getCookie('accessToken');
   },
   methods: {
+    popup: function(title) {
+      this.modalTitle = title;
+      $('#modal').modal({
+        closeViaDimmer: 0
+      });
+    },
     login: function(accessToken) {
       this.userId = accessToken.userId;
       this.setCookie('userId', accessToken.userId, 30);
