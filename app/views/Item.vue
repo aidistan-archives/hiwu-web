@@ -15,7 +15,7 @@
         h2.am-margin-bottom-sm {{ data.name }}
         .am-text-xs {{ date }}
         .am-text-xs {{ data.city }}
-        p.am-text-sm.am-margin-top-sm {{ data.description }}
+        p.am-text-sm.am-margin-top-sm(v-for="desc in descriptions") {{ desc }}
 </template>
 
 <script>
@@ -44,6 +44,9 @@ export default {
       if (this.data.date_d > 0)
         date += '.' + this.data.date_d + ' 日';
       return date;
+    },
+    descriptions: function() {
+      return this.data.description.split('\n');
     }
   },
   route: {

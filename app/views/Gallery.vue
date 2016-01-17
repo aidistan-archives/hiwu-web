@@ -11,7 +11,7 @@
         img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
       .am-u-sm-12
         h2.am-margin-vertical.am-text-center {{ title }}
-        p.am-text-sm {{ data.description }}
+        p.am-text-sm(v-for="desc in descriptions") {{ desc }}
     #gallery-items.am-g
       .am-u-sm-12.am-u-lg-6.am-u-end(v-for="item in data.items")
         item.am-margin-bottom-sm(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
@@ -32,6 +32,9 @@ export default {
   computed: {
     title: function() {
       return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
+    },
+    descriptions: function() {
+      return this.data.description.split('\n');
     }
   },
   route: {
