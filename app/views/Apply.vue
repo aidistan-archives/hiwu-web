@@ -1,5 +1,5 @@
 <template lang="jade">
-#apply
+#apply(transition="fall")
   #apply-topbar
     topbar(title="申请建立我的博物馆", :left-link="{ name: 'today' }")
   #apply-form.am-container.am-margin-top

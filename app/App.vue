@@ -1,5 +1,5 @@
 <template lang="jade">
-router-view
+router-view(transition="ease")
 </template>
 
 <script>
@@ -92,9 +92,11 @@ export default {
 
 <style lang="scss">
 @import './variables.scss';
+@import './transitions.scss';
 
 body {
   background-image: url('./assets/background.jpg');
+  overflow: hidden;
 }
 
 .am-container {
