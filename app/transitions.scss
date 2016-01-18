@@ -9,6 +9,13 @@
   transform-style: preserve-3d;
 }
 
+.v-enter { animation: scaleUpIn .7s ease both; }
+
+@keyframes scaleUpIn {
+  from { opacity: 0; transform: scale(.8); }
+  to { }
+}
+
 @keyframes easeRightIn {
   from { transform: translateX(100%);  }
   to { }

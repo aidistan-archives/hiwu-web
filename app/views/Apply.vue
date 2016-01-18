@@ -83,6 +83,5 @@ export default {
 }
 
 .apply-transition { @extend .v-transition; position: absolute; background-image: url('../assets/background.jpg'); }
-.apply-enter { animation: easeRightIn .7s ease-in-out both; }
 .apply-leave { z-index: 2; transform-origin: 0% 0%; animation: fallOut 1s both ease-in; }
 </style>
