@@ -19,6 +19,7 @@
       h3.am-margin-top-xl 正在努力加载中...
     .am-g.am-g-collapse(v-else)
       gallery.am-margin-sm(v-for="entry in data", :data="entry.gallery")
+      p.am-text-center 点击左上角查看更多往期博物馆
 </template>
 
 <script>
@@ -68,5 +69,9 @@ export default {
     background-image: url('../assets/btn-background.png');
     background-size: 100% 100%;
   }
+}
+
+#today-galleries {
+  p.am-text-center { color: $grey; }
 }
 </style>
