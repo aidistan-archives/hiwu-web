@@ -1,5 +1,5 @@
 <template lang="jade">
-router-view(transition="ease")
+router-view(transition="view")
 #modal.am-modal.am-modal-no-btn(tabindex="-1")
   .am-modal-dialog
     .am-modal-hd {{ modalTitle }}
@@ -114,4 +114,8 @@ body {
 .am-container {
   max-width: 1200px;
 }
+
+.view-transition { @extend .v-transition; position: absolute; }
+.view-enter { animation: easeRightIn .7s ease-in-out both; }
+.view-leave { animation: easeLeftOut .7s ease-in-out both; }
 </style>

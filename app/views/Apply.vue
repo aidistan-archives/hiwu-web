@@ -1,5 +1,5 @@
 <template lang="jade">
-#apply(transition="fall")
+#apply(transition="apply")
   #apply-topbar
     topbar(title="申请建立我的博物馆", :left-link="{ name: 'today' }")
   #apply-form.am-container.am-margin-top
@@ -76,8 +76,13 @@ export default {
 
 <style lang="scss">
 @import '../variables.scss';
+@import '../transitions.scss';
 
 #apply {
   button { background-color: $primary; }
 }
+
+.apply-transition { @extend .v-transition; position: absolute; background-image: url('../assets/background.jpg'); }
+.apply-enter { animation: easeRightIn .7s ease-in-out both; }
+.apply-leave { z-index: 2; transform-origin: 0% 0%; animation: fallOut 1s both ease-in; }
 </style>
