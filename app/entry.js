@@ -42,7 +42,11 @@ router.redirect({
   '*': '/'
 });
 
-router.afterEach(function (transition) {
+router.beforeEach(function() {
+  $(window).smoothScroll();
+});
+
+router.afterEach(function(transition) {
   _hmt.push(['_trackPageview', window.location]);
 });
 

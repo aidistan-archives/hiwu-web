@@ -47,9 +47,6 @@ export default {
       transition.next();
     }
   },
-  ready: function() {
-    $('#apply').height($(window).height());
-  },
   methods: {
     submit: function() {
       var self = this;

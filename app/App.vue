@@ -108,7 +108,7 @@ export default {
 
 body {
   background-image: url('./assets/background.jpg');
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .am-container {

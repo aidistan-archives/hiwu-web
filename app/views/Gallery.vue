@@ -57,9 +57,6 @@ export default {
       });
     }
   },
-  ready: function() {
-    $('#gallery').height($(window).height());
-  },
   components: {
     topbar: require('../components/Topbar.vue'),
     item: require('../components/ItemCard.vue')
@@ -69,11 +66,6 @@ export default {
 
 <style lang="scss">
 @import '../variables.scss';
-
-#gallery {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
 
 #gallery-header p {
   color: $grey;

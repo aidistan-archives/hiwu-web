@@ -72,9 +72,6 @@ export default {
       });
     }
   },
-  ready: function() {
-    $('#item').height($(window).height());
-  },
   methods: {
     change: function(url) {
       this.photo = url;
