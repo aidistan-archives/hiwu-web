@@ -3,12 +3,12 @@
   #today-topbar
     topbar(title="每日博物展", :left-link="{ name: 'archive' }", left-icon="bars")
   #today-banner
-    .css56cffdd6423.am-text-lg.am-text-center.am-margin-vertical-xl
-      span 物境未觉，与您一起发现时光里的珍物
+    .css195689d78423.am-text-lg.am-text-center.am-margin-vertical-xl
+      span 物境未覺，與您一起發現時光裏的珍物
       br
-      span 共建游历初心的物件文化
+      span 共建遊歷初心的物件文化
       br
-      span 感受万物欢喜，体会万物动情
+      span 感受萬物歡喜，體會萬物動情
     #today-apply.am-text-center.am-margin-vertical-xl(v-link="{ name: 'apply' }")
       span.am-padding.am-padding-horizontal-lg
         img.am-margin-right-xs(src="../assets/logo-black-48.png", alt="申请", width="32", height="32")
