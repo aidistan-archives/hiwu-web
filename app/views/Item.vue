@@ -1,21 +1,20 @@
 <template lang="jade">
 #item
   #item-topbar
-    topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'gallery', params: { gallery_id: data.galleryId } }")
+    topbar.am-margin-bottom-sm(title="物品详情", :left-link="{ name: 'gallery', params: { gallery_id: data.galleryId } }")
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
       i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
-    .am-container.am-g-collapse(v-else)
+    .am-container.am-padding-0(v-else)
       #item-photo.am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered
         img.am-img-responsive.am-center(:src="photo")
-        footer.am-g.am-g-collapse.am-padding-xs(v-if="data.photos.length > 1")
-          .am-u-sm-2.am-u-md-1.am-u-end(v-for="photo in data.photos", style="padding: 1px;")
+        .am-g.am-g-collapse.am-margin-top(v-if="data.photos.length > 1")
+          .am-u-sm-2.am-u-md-1.am-u-end(v-for="photo in data.photos")
             image-square(:src="photo.url", @click="change(photo.url)")
-      #item-desc.am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered.am-margin-top
-        h2.am-margin-bottom-sm {{ data.name }}
-        .am-text-xs {{ date }}
-        .am-text-xs {{ data.city }}
-        p.am-text-sm.am-margin-top-sm(v-for="desc in descriptions") {{ desc }}
+      #item-desc.am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered.am-margin-top-sm.am-padding-top
+        h2.am-text-xl.am-margin-bottom-0 {{ data.name }}
+        .am-margin-bottom-lg {{ date }} {{ data.city }}
+        p(v-for="desc in descriptions") {{ desc }}
 </template>
 
 <script>
@@ -38,11 +37,11 @@ export default {
     date: function() {
       var date = '';
       if (this.data.date_y > 0)
-        date += this.data.date_y + ' 年';
+        date += this.data.date_y + '年';
       if (this.data.date_m > 0)
-        date += '.' + this.data.date_m + ' 月';
+        date += this.data.date_m + '月';
       if (this.data.date_d > 0)
-        date += '.' + this.data.date_d + ' 日';
+        date += this.data.date_d + '日';
       return date;
     },
     descriptions: function() {
@@ -87,18 +86,14 @@ export default {
 <style lang="scss">
 @import '../variables.scss';
 
-#item-photo {
-  position: relative;
+#item-desc {
+  background-color: #fff;
 
-  img { width: 100%; }
+  p { color: $grey; }
 
-  footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+  p:last-child {
+    margin-bottom: 0px;
+    padding-bottom: 1.6rem;
   }
 }
-
-#item-desc p { color: $grey; }
 </style>
