@@ -19,9 +19,6 @@ export default {
         backgroundImage: 'url(' + this.src + '@!200x200)'
       }
     }
-  },
-  attached: function() {
-    $(this.$el).height($(this.$el).width());
   }
 }
 </script>
@@ -31,12 +28,10 @@ export default {
 
 .image-square {
   display: block;
-  position: relative;
+  cursor: pointer;
 
   width: 100%;
-  height: 100%;
-
-  cursor: pointer;
+  padding-bottom: 100%;
 
   background-position: center;
   background-size: cover;
