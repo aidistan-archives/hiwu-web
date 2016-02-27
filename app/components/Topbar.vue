@@ -1,9 +1,11 @@
 <template lang="jade">
 .topbar
-  .am-text-center.am-padding-sm.font-csjzbk {{ title }}
-    a.am-fl.am-icon-fw(v-show="leftLink", v-link="leftLink", :class="['am-icon-' + leftIcon]")
+  .am-text-center.am-text-lg.am-padding-horizontal.am-padding-vertical-xs {{ title }}
+    a.am-fl(v-link="leftLink", :style="{ visibility: leftLink ? 'visible' : 'hidden' }")
+      img.am-margin-bottom-xs(v-if="leftImage", :src="leftImage", :alt="leftAlt", width="18", height="18")
+      i.am-icon-fw(v-else, :class="['am-icon-' + leftIcon]")
     a.am-fr(v-link="{ name: 'today' }", :style="{ visibility: rightIcon ? 'visible' : 'hidden' }")
-      img(src="../assets/logo-primary-48.png", alt="申请", width="25.6", height="25.6")
+      img(src="../assets/logo-primary-48.png", alt="申请", width="28.8", height="28.8")
 </template>
 
 <script>
@@ -15,6 +17,14 @@ export default {
     },
     leftLink: {
       default: false
+    },
+    leftImage: {
+      type: String,
+      default: false
+    },
+    leftAlt: {
+      type: String,
+      default: ''
     },
     leftIcon: {
       type: String,
@@ -38,7 +48,10 @@ export default {
   letter-spacing: 1px;
   box-shadow: 0 1px 3px $grey-dark;
 
-  a { color: inherit; }
-  a.am-fl { color: $grey; }
+  a {
+    color: $primary;
+    width: 28.8px;
+    height: 28.8px;
+  }
 }
 </style>
