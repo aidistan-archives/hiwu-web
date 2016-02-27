@@ -1,8 +1,8 @@
 <template lang="jade">
 #archive
-  #archive-topbar
+  #archive-topbar.am-margin-bottom-sm
     topbar(title="往期博物展", :left-link="{ name: 'today' }")
-  #archive-content.am-container
+  #archive-content.am-container.am-padding-0
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
       i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
@@ -10,7 +10,8 @@
       .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
       .am-g
         .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
-          gallery.am-margin-bottom-sm(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
+          gallery(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
+          .archive-seperator(v-show="$index < galleries.length - 1")
 </template>
 
 <script>
@@ -61,5 +62,12 @@ export default {
 
 .archive-date {
   color: $grey;
+}
+
+.archive-seperator {
+  background: transparent;
+  height: 2px;
+  border-left:16px solid #fff;
+  border-right:16px solid #fff;
 }
 </style>

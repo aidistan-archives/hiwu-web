@@ -1,7 +1,7 @@
 <template lang="jade">
 #gallery
   #gallery-topbar
-    topbar.am-margin-bottom(:title="data.name", :left-link="{ name: 'today' }")
+    topbar.am-margin-bottom(:title="topbarTitle", :left-link="{ name: 'today' }")
   .am-text-center.am-margin-xl(v-if="$loadingRouteData")
     i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
     h3.am-margin-top-xl 正在努力加载中...
@@ -22,7 +22,7 @@ export default {
   data: function() {
     return {
       data: {
-        name: '加载中...',
+        name: '',
         description: '',
         items: [],
         hiwuUser: { nickname: '', avatar: '' }
@@ -30,6 +30,9 @@ export default {
     };
   },
   computed: {
+    topbarTitle: function() {
+      return this.data.hiwuUser.nickname === '' ? '加载中...' : this.data.hiwuUser.nickname + '的博物馆';
+    },
     title: function() {
       return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
     },

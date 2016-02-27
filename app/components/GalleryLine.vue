@@ -1,28 +1,18 @@
 <template lang="jade">
-a.gallery-line.am-padding-horizontal-sm.am-padding-vertical-xs.am-cf(v-link="link")
-  .thumb.am-fl
-    img.am-img-responsive.am-circle.am-fl(:src="data.hiwuUser.avatar")
-  .title.am-vertical-align.am-fl.am-margin-horizontal-sm(:style='titleStyle')
-    span.am-vertical-align-middle {{ title }}
-  .badge.am-vertical-align.am-fr
-    span.am-vertical-align-middle.am-text-sm {{ data.items.length }} 件
+a.gallery-line.am-padding-horizontal.am-padding-vertical-sm(v-link="link")
+  .thumb
+    img.am-img-responsive.am-circle(:src="data.hiwuUser.avatar", width="40", height="40")
+  .title.am-margin-horizontal {{ title }}
+  .badge.am-text-sm {{ data.items.length }} 件
 </template>
 
 <script>
 export default {
-  data: function() {
-    return {
-      titleStyle: { width: '0px' }
-    };
-  },
   props: ['data', 'link'],
   computed: {
     title: function() {
       return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
     }
-  },
-  attached: function() {
-    this.titleStyle.width = $(this.$el).width() - 80 - 20 - 1 + 'px';
   }
 }
 </script>
@@ -36,18 +26,20 @@ export default {
   color: inherit;
   background-color: #fff;
 
-  .thumb, .badge { width: 40px; }
-  .thumb, .title, .badge { height: 40px; }
+  display: flex;
+  align-items: center;
 
-  .title span {
+  .thumb, .badge { flex: none; }
+
+  .title {
+    flex: auto;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .badge span{
+  .badge {
     padding-top: 3px;
-    text-align: right;
     color: $grey;
   }
 }
