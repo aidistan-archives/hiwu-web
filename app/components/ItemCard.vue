@@ -1,34 +1,37 @@
 <template lang="jade">
-a.item-card.am-cf.am-text-xs(v-link="link")
-  image-square.am-fl(:src="data.photos[0].url", :href="link")
-  .name.am-text-sm.am-fl(:style="textStyle") {{ data.name }}
-  .desc.am-text-xs.am-fl(:style="textStyle") {{ short_desc }}
+a.item-card.am-g.am-g-collapse(v-link="link")
+  .am-u-sm-4
+    .am-margin-sm
+      image-square(:src="data.photos[0].url", :href="link")
+  .am-u-sm-8
+    .am-margin-sm
+      h3.am-text-lg {{ data.name }}
+    .am-margin-sm {{ shortDescription }}
 </template>
 
 <script>
 export default {
-  props: ['data', 'link'],
   data: function() {
     return {
-      textStyle: {
-        width: 0,
-        visibility: 'hidden'
-      }
+      shortDescription: ''
     };
   },
-  computed: {
-    short_desc: function() {
-      var charNumPerLine = Math.floor(parseInt(this.textStyle.width) / 12);
-      var shortDescription = this.data.description.slice(0, charNumPerLine * 3 - 8);
-      return (shortDescription.length < this.data.description.length ? shortDescription + '...' : shortDescription);
-    }
-  },
+  props: ['data', 'link'],
   attached: function() {
     var self = this;
 
     setTimeout(function() {
-      self.textStyle.width = $('.item-card').width() - $('.item-card .image-square').width() + 'px';
-      self.textStyle.visibility = 'visible';
+      var eles = $(self.$el).find('.am-margin-sm');
+
+      var lineNum = Math.floor(($(eles[0]).height() - $(eles[1]).height() - 20) / 25.6);
+      var charNumPerLine = Math.floor($(eles[2]).width() / 16);
+
+      console.log(lineNum)
+
+      self.shortDescription = self.data.description.slice(0, (charNumPerLine - 1) * lineNum);
+      if (self.shortDescription.length < self.data.description.length) {
+        self.shortDescription += '...';
+      }
     }, 50);
   },
   components: {
@@ -45,19 +48,14 @@ export default {
   color: inherit;
   background-color: #fff;
 
-  .image-square { width: 10em; height: 10em; }
-
-  .name {
-    font-weight: bold;
-    padding: 0.75em;
-
+  h3.am-text-lg {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .desc {
-    padding: 0.75em;
+  .item-desc {
+    height: 100%;
   }
 }
 </style>

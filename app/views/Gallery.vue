@@ -5,16 +5,17 @@
   .am-text-center.am-margin-xl(v-if="$loadingRouteData")
     i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
     h3.am-margin-top-xl 正在努力加载中...
-  .am-container(v-else)
-    #gallery-header.am-g.am-margin-vertical
+  .am-container.am-padding-0(v-else)
+    #gallery-header.am-g.am-margin-top.am-margin-bottom-sm
       .am-u-sm-5.am-u-sm-centered
         img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
-      .am-u-sm-12
-        h2.am-margin-vertical.am-text-center {{ title }}
-        p.am-text-sm(v-for="desc in descriptions") {{ desc }}
+      .am-u-sm-12.am-margin-top.am-padding-horizontal-lg
+        h2.am-text-xl.am-text-center {{ title }}
+        p(v-for="desc in descriptions") {{ desc }}
     #gallery-items.am-g
-      .am-u-sm-12.am-u-lg-6.am-u-end(v-for="item in data.items")
-        item.am-margin-bottom-sm(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
+      .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="item in data.items")
+        item(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
+        .gallery-seperator(v-show="$index < data.items.length - 1")
 </template>
 
 <script>
@@ -71,7 +72,14 @@ export default {
 @import '../variables.scss';
 
 #gallery-header p {
-  color: $grey;
+  color: $grey-dark;
   text-align: justify;
+}
+
+.gallery-seperator {
+  background: transparent;
+  height: 2px;
+  border-left:10px solid #fff;
+  border-right:10px solid #fff;
 }
 </style>
