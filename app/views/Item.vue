@@ -17,17 +17,17 @@
                 image-square.am-round(:src="data.hiwuUser.avatar")
       #item-desc-wrapper.am-g.am-margin-0
         .am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered.am-padding-0
-          #item-desc.am-margin-top.am-padding.am-padding-top-lg
-            header.am-margin-bottom-lg
+          #item-desc.am-margin-top-sm.am-padding.am-padding-top-lg
+            header#item-desc-header.am-margin-bottom-lg
               h2.am-text-xl.am-margin-0 {{ data.name }}
                 img.am-fr(:src="likeImage", width="36", height="36")
                 i.am-fr.am-icon-comments-o.am-margin-right
-              div
-                span {{ date }} {{ data.city }}
-                span.am-fr {{ data.likes }}
-                span.am-fr.am-margin-right {{ data.comments.length }}
-            p(v-for="desc in descriptions") {{ desc }}
-            #item-terminator
+              span {{ date }} {{ data.city }}
+              span.am-fr {{ data.likes }}
+              span.am-fr.am-margin-right {{ data.comments.length }}
+            #item-desc-content
+              p(v-for="desc in descriptions") {{ desc }}
+            #item-desc-terminator
 </template>
 
 <script>
@@ -105,6 +105,12 @@ export default {
 
 #item-desc {
   background-color: #fff;
+}
+
+#item-desc-header {
+  h2 {
+    height: 40px;
+  }
 
   .am-icon-comments-o {
     color: $grey;
@@ -122,7 +128,7 @@ export default {
   }
 }
 
-#item-terminator {
+#item-desc-terminator {
   background: $grey-lighter;
   height: 2px;
 }
