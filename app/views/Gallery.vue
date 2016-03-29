@@ -6,13 +6,13 @@
     i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
     h3.am-margin-top-xl 正在努力加载中...
   .am-container.am-padding-0(v-else)
-    #gallery-header.am-g.am-margin-top.am-margin-bottom-sm
+    #gallery-header.am-margin-top.am-margin-bottom-sm
       .am-u-sm-5.am-u-sm-centered
         img.am-img-responsive.am-circle.am-center(:src="data.hiwuUser.avatar")
       .am-u-sm-12.am-margin-top.am-padding-horizontal-lg
         h2.am-text-xl.am-text-center {{ title }}
         p(v-for="desc in descriptions") {{ desc }}
-    #gallery-items.am-g
+    #gallery-items
       .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="item in data.items")
         item(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
         .gallery-seperator(v-show="$index < data.items.length - 1")
