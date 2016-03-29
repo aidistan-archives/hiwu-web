@@ -20,14 +20,19 @@
           #item-desc.am-margin-top-sm.am-padding.am-padding-top-lg
             header#item-desc-header.am-margin-bottom-lg
               h2.am-text-xl.am-margin-0 {{ data.name }}
-                img.am-fr(:src="likeImage", width="36", height="36")
+                img.am-fr(:src="likeImage")
                 i.am-fr.am-icon-comments-o.am-margin-right
               span {{ date }} {{ data.city }}
               span.am-fr {{ data.likes }}
               span.am-fr.am-margin-right {{ data.comments.length }}
             #item-desc-content
               p(v-for="desc in descriptions") {{ desc }}
-            #item-desc-terminator
+            #item-desc-divider
+            #item-comments
+              div(v-for="comment in data.comments")
+                span(v-if="comment.toId == null") {{ comment.hiwuUser.nickname }}：
+                spen(v-else) {{ comment.hiwuUser.nickname }}对{{ comment.toUser.nickname }}：
+                span {{ comment.content }}
 </template>
 
 <script>
@@ -110,12 +115,21 @@ export default {
 #item-desc-header {
   h2 {
     height: 40px;
-  }
 
-  .am-icon-comments-o {
-    color: $grey;
-    font-size: 36px;
-    line-height: 36px;
+    img {
+      width: 36px;
+      height: 36px;
+    }
+
+    i {
+      color: $grey;
+      font-size: 36px;
+      line-height: 36px;
+    }
+
+    img, i {
+      cursor: pointer;
+    }
   }
 
   span {
@@ -128,8 +142,12 @@ export default {
   }
 }
 
-#item-desc-terminator {
+#item-desc-divider {
   background: $grey-lighter;
   height: 2px;
+}
+
+#item-comments div:first-child {
+  margin-top: 16px;
 }
 </style>
