@@ -7,7 +7,8 @@
       i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     template(v-if="!$loadingRouteData", v-for="(date, galleries) in data")
-      .archive-date.am-text-sm.am-margin-sm.am-margin-bottom-xs {{ date }}
+      .am-u-sm-12.am-margin-sm.am-margin-bottom-xs
+        .archive-date.am-text-sm {{ date }}
       .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
         gallery(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")
         .archive-seperator(v-show="$index < galleries.length - 1")
