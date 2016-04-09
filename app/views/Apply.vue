@@ -51,19 +51,29 @@ export default {
     submit: function() {
       var self = this;
 
-      self.$http.put(self.$root.apiUrl + '/Hiwu/jianliao?channel=apply', {
-        title: self.title,
-        description: self.description,
-        weixin: self.weixin,
-        weibo: self.weibo,
-        mobile: self.mobile,
-        email: self.email
+      if (
+        (self.title === '') || (self.description === '') ||
+        (self.weixin === '' && self.weibo === '' && self.mobile === '' && self.email === '')
+      ) {
+        return self.$root.popup('请填写完整信息');
+      }
+
+      self.$http.post(self.$root.apiUrl + '/Hiwu/mail?group=apply', {
+        subject: '博物展申请',
+        content: [
+          '标题：' + self.title,
+          '描述：' + self.description,
+          '微信：' + self.weixin,
+          '微博：' + self.weibo,
+          '手机：' + self.mobile,
+          '邮件：' + self.email
+        ].join('\n')
       }, function (data, status, request) {
-        if (data.id && data.room) {
+        if (status === 200) {
           self.$root.popup('申请提交成功');
           self.$route.router.go({ name: 'today' });
         } else {
-          self.$root.popup('请填写完整信息');
+          self.$root.popup('申请提交失败，请稍候再试');
         }
       });
     }
