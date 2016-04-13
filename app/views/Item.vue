@@ -31,7 +31,7 @@
             #item-comments
               div(v-for="comment in data.comments")
                 span(v-if="comment.toId == null") {{ comment.hiwuUser.nickname }}：
-                spen(v-else) {{ comment.hiwuUser.nickname }}对{{ comment.toUser.nickname }}：
+                spen(v-else) {{ comment.hiwuUser.nickname }} 回复 {{ comment.toUser.nickname }}：
                 span {{ comment.content }}
 </template>
 
