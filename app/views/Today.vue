@@ -45,8 +45,10 @@ export default {
     data: function(transition) {
       var self = this;
 
-      self.$http.get(self.$root.apiUrl + '/SelectedGalleries/publicView', function(data, status, request) {
-        self.data = data.slice(0, 8);
+      self.$http.get(
+        self.$root.apiUrl + '/SelectedGalleries/publicView'
+      ).then(function(res) {
+        self.data = res.data.slice(0, 8);
 
         transition.next();
       });

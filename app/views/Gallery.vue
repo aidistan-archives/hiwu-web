@@ -45,8 +45,10 @@ export default {
     data: function(transition) {
       var self = this;
 
-      self.$http.get(self.$root.apiUrl + '/Galleries/' + self.$route.params.gallery_id + '/publicView', function (data, status, request) {
-        self.data = data;
+      self.$http.get(
+        self.$root.apiUrl + '/Galleries/' + self.$route.params.gallery_id + '/publicView'
+      ).then(function(res) {
+        self.data = res.data;
 
         self.$root.configJweixin({
           share_content: {
@@ -58,7 +60,7 @@ export default {
         });
 
         transition.next();
-      });
+      }, function(res) { transition.abort(); });
     }
   },
   components: {

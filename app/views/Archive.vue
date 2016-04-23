@@ -37,10 +37,12 @@ export default {
     data: function(transition) {
       var self = this;
 
-      self.$http.get(self.$root.apiUrl + '/SelectedGalleries/publicView', function (data, status, request) {
+      self.$http.get(
+        self.$root.apiUrl + '/SelectedGalleries/publicView'
+      ).then(function(res) {
         self.data = {};
 
-        for (var entry of data) {
+        for (var entry of res.data) {
           var date = entry.date_y + '年' + entry.date_m + '月';
           if (self.data[date] === undefined) self.data[date] = [];
           self.data[date].push(entry.gallery);

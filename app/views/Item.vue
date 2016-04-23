@@ -74,11 +74,13 @@ export default {
     data: function(transition) {
       var self = this;
 
-      self.$http.get(self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView?' + qs.stringify({
-        access_token: self.$root.accessToken
-      }), function (data, status, request) {
-        self.data = data;
-        self.photo = data.photos[0].url;
+      self.$http.get(
+        self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView?' + qs.stringify({
+          access_token: self.$root.accessToken
+        })
+      ).then(function(res) {
+        self.data = res.data;
+        self.photo = self.data.photos[0].url;
 
         self.$root.configJweixin({
           share_content: {

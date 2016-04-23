@@ -74,10 +74,12 @@ export default {
     configJweixin: function(options) {
       var self = this;
 
-      self.$http.get(self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
-        url: window.location.href.split('#')[0]
-      }), function (data, status, request) {
-        wx.config($.extend(data, {
+      self.$http.get(
+        self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
+          url: window.location.href.split('#')[0]
+        })
+      ).then(function(res) {
+        wx.config($.extend(res.data, {
           jsApiList: [
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
