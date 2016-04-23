@@ -1,10 +1,11 @@
 <template lang="jade">
-router-view
-#modal.am-modal.am-modal-no-btn(tabindex="-1")
-  .am-modal-dialog
-    .am-modal-hd {{ modalTitle }}
-      a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close="true") &times;
-    .am-modal-bd
+#app
+  router-view
+  #modal.am-modal.am-modal-no-btn(tabindex="-1")
+    .am-modal-dialog
+      .am-modal-hd {{ modalTitle }}
+        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close="true") &times;
+      .am-modal-bd
 </template>
 
 <script>
