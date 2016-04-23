@@ -3,7 +3,7 @@
   #item-topbar
     topbar.am-margin-bottom-sm(:title="topbarTitle", :left-link="{ name: 'gallery', params: { gallery_id: data.galleryId } }")
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
-      i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+      span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     .am-container.am-padding-0(v-else)
       #item-photo-wrapper.am-margin-0

@@ -14,7 +14,7 @@
   hr#today-seperator
   #today-galleries.am-container.am-padding-0
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
-      i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+      span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     template(v-else)
       gallery.am-margin-bottom(v-for="entry in data", :data="entry.gallery", transition="")

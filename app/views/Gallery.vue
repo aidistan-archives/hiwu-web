@@ -3,7 +3,7 @@
   #gallery-topbar
     topbar.am-margin-bottom(:title="topbarTitle", :left-link="{ name: 'today' }")
   .am-text-center.am-margin-xl(v-if="$loadingRouteData")
-    i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+    span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
     h3.am-margin-top-xl 正在努力加载中...
   .am-container.am-padding-0(v-else)
     #gallery-header.am-margin-top.am-margin-bottom-sm

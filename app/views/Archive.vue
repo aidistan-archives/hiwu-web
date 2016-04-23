@@ -4,7 +4,7 @@
     topbar(title="往期博物展", :left-link="{ name: 'today' }")
   #archive-content.am-container.am-padding-0
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
-      i.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
+      span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     template(v-if="!$loadingRouteData", v-for="(date, galleries) in data")
       .am-u-sm-12.am-margin-sm.am-margin-bottom-xs

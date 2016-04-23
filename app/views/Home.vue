@@ -4,16 +4,13 @@
     header
       img(src="../assets/home-title.png")
       .home-links.am-fr.am-hide-sm-only
-        i.am-icon-apple.am-icon-sm.am-icon-grey
-        span.am-margin-right-lg
-        i.am-icon-android.am-icon-sm.am-icon-grey
-        span.am-margin-right-lg
-        i.am-icon-globe.am-icon-sm(v-link="{ name: 'today' }")
-        span.am-margin-right-lg
-        a(href="http://weibo.com/hiwuren", target="_blank")
-          i.am-icon-weibo.am-icon-sm
-        span.am-margin-right-lg
-        i.am-icon-weixin.am-icon-sm(@click="showQRcode")
+        a.am-margin-right-lg(href="https://itunes.apple.com/cn/app/wu-jing-wei-jue/id1102745365", target="_blank")
+          span.am-icon-apple.am-icon-sm
+        span.am-margin-right-lg.am-icon-android.am-icon-sm
+        span.am-margin-right-lg.am-icon-globe.am-icon-sm(v-link="{ name: 'today' }")
+        a.am-margin-right-lg(href="http://weibo.com/hiwuren", target="_blank")
+          span.am-icon-weibo.am-icon-sm
+        span.am-icon-weixin.am-icon-sm(@click="showQRcode")
     p.am-center.am-text-lg 很久很久以前，奇怪的生物在地球上出现，他们可以制造物件，可以改变世界，他们被称为人类！
     img.am-img-responsive.am-center(src="../assets/home-slide-1.png", :style="imgStyle")
   #home-slide-2.slide
@@ -25,16 +22,13 @@
   #home-slide-4.slide
     p.am-center.am-text-lg 物境未觉，与您一起发现时光里的珍物，共建游历初心的物件文化，感受万物欢喜，体会万物动情！
     .home-links.am-text-center.am-margin-vertical
-      i.am-icon-apple.am-icon-sm.am-icon-grey
-      span.am-margin-right-lg
-      i.am-icon-android.am-icon-sm.am-icon-grey
-      span.am-margin-right-lg
-      i.am-icon-globe.am-icon-sm(v-link="{ name: 'today' }")
-      span.am-margin-right-lg
-      a(href="http://weibo.com/hiwuren", target="_blank")
-        i.am-icon-weibo.am-icon-sm
-      span.am-margin-right-lg
-      i.am-icon-weixin.am-icon-sm(@click="showQRcode")
+      a.am-margin-right-lg(href="https://itunes.apple.com/cn/app/wu-jing-wei-jue/id1102745365", target="_blank")
+        span.am-icon-apple.am-icon-sm
+      span.am-margin-right-lg.am-icon-android.am-icon-sm
+      span.am-margin-right-lg.am-icon-globe.am-icon-sm(v-link="{ name: 'today' }")
+      a.am-margin-right-lg(href="http://weibo.com/hiwuren", target="_blank")
+        span.am-icon-weibo.am-icon-sm
+      span.am-icon-weixin.am-icon-sm(@click="showQRcode")
     img.am-img-responsive.am-center(src="../assets/home-slide-4.png", :style="imgStyle")
     footer.am-text-xs.am-text-center.am-margin-xs &copy;2015 上海逗物信息技术有限公司，沪ICP备15037655号-1
   #home-qrcode2wxmp.am-modal.am-modal-no-btn(tabindex="-1")
@@ -141,12 +135,12 @@ export default {
   @media screen and (min-width: 641px) { .slide { padding: 40px; } }
   @media screen and (max-width: 640px) { .slide { padding: 20px; } }
 
-  .am-icon-apple,
   .am-icon-android {
     cursor: default;
     color: $grey-light;
   }
 
+  .am-icon-apple,
   .am-icon-globe,
   .am-icon-weibo,
   .am-icon-weixin {
