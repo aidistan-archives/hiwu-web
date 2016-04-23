@@ -26,8 +26,6 @@ export default {
       var lineNum = Math.floor(($(eles[0]).height() - $(eles[1]).height() - 20) / 25.6);
       var charNumPerLine = Math.floor($(eles[2]).width() / 16);
 
-      console.log(lineNum)
-
       self.shortDescription = self.data.description.slice(0, (charNumPerLine - 1) * lineNum);
       if (self.shortDescription.length < self.data.description.length) {
         self.shortDescription += '...';
