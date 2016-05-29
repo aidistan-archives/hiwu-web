@@ -1,6 +1,6 @@
 {
   "name": "hiwu-web",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Hiwu web application",
   "scripts": {
     "dev": "node build/dev-server.js",
