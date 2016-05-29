@@ -9,10 +9,10 @@
 </template>
 
 <script>
-var qs = require('querystring');
+var qs = require('querystring')
 
 export default {
-  data: function() {
+  data: function () {
     return {
       userId: null,
       accessToken: null,
@@ -21,66 +21,66 @@ export default {
         weibo: '3167931574'
       },
       modalTitle: ''
-    };
+    }
   },
   computed: {
-    apiUrl: function() {
+    apiUrl: function () {
       if (process.env.NODE_ENV === 'development') {
-        return 'http://hiwu.ren/api';
+        return 'http://hiwu.ren/api'
       } else {
-        return window.location.protocol + '//' + window.location.host + '/api';
+        return window.location.protocol + '//' + window.location.host + '/api'
       }
     }
   },
-  ready: function() {
-    this.userId = this.getCookie('userId');
-    this.accessToken = this.getCookie('accessToken');
+  ready: function () {
+    this.userId = this.getCookie('userId')
+    this.accessToken = this.getCookie('accessToken')
   },
   methods: {
-    popup: function(title) {
-      this.modalTitle = title;
-      $('#modal').modal({
+    popup: function (title) {
+      this.modalTitle = title
+      window.$('#modal').modal({
         closeViaDimmer: 0
-      });
+      })
     },
-    login: function(accessToken) {
-      this.userId = accessToken.userId;
-      this.setCookie('userId', accessToken.userId, 30);
-      this.accessToken = accessToken.id;
-      this.setCookie('accessToken', accessToken.id, 30);
+    login: function (accessToken) {
+      this.userId = accessToken.userId
+      this.setCookie('userId', accessToken.userId, 30)
+      this.accessToken = accessToken.id
+      this.setCookie('accessToken', accessToken.id, 30)
     },
-    logout: function() {
-      this.userId = null;
-      this.setCookie('userId', '', 0);
-      this.accessToken = null;
-      this.setCookie('accessToken', '', 0);
+    logout: function () {
+      this.userId = null
+      this.setCookie('userId', '', 0)
+      this.accessToken = null
+      this.setCookie('accessToken', '', 0)
     },
-    setCookie: function(name, value, expireDate) {
-      var exdate = new Date();
-      exdate.setDate(exdate.getDate() + expireDate);
-      document.cookie = name + '=' + escape(value) + ((expireDate == null) ? '' : ';expires=' + exdate.toGMTString());
+    setCookie: function (name, value, expireDate) {
+      var exdate = new Date()
+      exdate.setDate(exdate.getDate() + expireDate)
+      document.cookie = name + '=' + escape(value) + ((expireDate == null) ? '' : ';expires=' + exdate.toGMTString())
     },
-    getCookie: function(name) {
+    getCookie: function (name) {
       if (document.cookie.length > 0) {
-        var start = document.cookie.indexOf(name + '=');
+        var start = document.cookie.indexOf(name + '=')
         if (start !== -1) {
-          start = start + name.length + 1;
+          start = start + name.length + 1
           var end = document.cookie.indexOf(';', start)
-          if (end === -1) end = document.cookie.length;
-          return unescape(document.cookie.substring(start, end));
+          if (end === -1) end = document.cookie.length
+          return unescape(document.cookie.substring(start, end))
         }
       }
-      return null;
+      return null
     },
-    configJweixin: function(options) {
-      var self = this;
+    configJweixin: function (options) {
+      var self = this
 
       self.$http.get(
         self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
           url: window.location.href.split('#')[0]
         })
-      ).then(function(res) {
-        wx.config($.extend(res.data, {
+      ).then(function (res) {
+        window.wx.config(window.$.extend(res.data, {
           jsApiList: [
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
@@ -88,18 +88,18 @@ export default {
             'onMenuShareWeibo',
             'onMenuShareQZone'
           ]
-        }));
+        }))
 
-        wx.ready(function() {
+        window.wx.ready(function () {
           if (options.share_content) {
-            wx.onMenuShareTimeline(options.share_content);
-            wx.onMenuShareAppMessage(options.share_content);
-            wx.onMenuShareQQ(options.share_content);
-            wx.onMenuShareWeibo(options.share_content);
-            wx.onMenuShareQZone(options.share_content);
+            window.wx.onMenuShareTimeline(options.share_content)
+            window.wx.onMenuShareAppMessage(options.share_content)
+            window.wx.onMenuShareQQ(options.share_content)
+            window.wx.onMenuShareWeibo(options.share_content)
+            window.wx.onMenuShareQZone(options.share_content)
           }
-        });
-      });
+        })
+      })
     }
   }
 }

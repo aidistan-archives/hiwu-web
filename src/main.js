@@ -1,15 +1,15 @@
-var Vue = require('vue');
-var Router = require('vue-router');
-var Resource = require('vue-resource');
+var Vue = require('vue')
+var Router = require('vue-router')
+var Resource = require('vue-resource')
 
 // Install router
-Vue.use(Router);
-Vue.use(Resource);
+Vue.use(Router)
+Vue.use(Resource)
 
 // Routing
 var router = new Router({
-  history: process.env.NODE_ENV === 'development' ? false : true
-});
+  history: process.env.NODE_ENV !== 'development'
+})
 
 router.map({
   '/': {
@@ -36,18 +36,18 @@ router.map({
     name: 'item',
     component: require('./views/Item.vue')
   }
-});
+})
 
 router.redirect({
   '*': '/'
-});
+})
 
-router.beforeEach(function() {
-  $(window).smoothScroll();
-});
+router.beforeEach(function () {
+  window.$(window).smoothScroll()
+})
 
-router.afterEach(function(transition) {
-  _hmt.push(['_trackPageview', window.location]);
-});
+router.afterEach(function (transition) {
+  window._hmt.push(['_trackPageview', window.location])
+})
 
-router.start(require('./App.vue'), '#app');
+router.start(require('./App.vue'), '#app')

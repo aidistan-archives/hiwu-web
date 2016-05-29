@@ -14,8 +14,8 @@ a.gallery-card.am-padding-sm(v-link="{ name: 'gallery', params: { gallery_id: da
 export default {
   props: ['data'],
   computed: {
-    featureItems: function() {
-      return this.data.items.slice(0, $(window).width() > 640 ? 12 : 9);
+    featureItems: function () {
+      return this.data.items.slice(0, window.$(window).width() > 640 ? 12 : 9)
     }
   },
   components: {

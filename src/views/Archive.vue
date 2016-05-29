@@ -16,13 +16,13 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       data: {}
-    };
+    }
   },
   route: {
-    activate: function(transition) {
+    activate: function (transition) {
       this.$root.configJweixin({
         share_content: {
           title: '往期博物展 - 物境未觉',
@@ -30,26 +30,26 @@ export default {
           link: window.location.href,
           imgUrl: 'http://hiwu.ren/logo-black-1024.png'
         }
-      });
+      })
 
-      transition.next();
+      transition.next()
     },
-    data: function(transition) {
-      var self = this;
+    data: function (transition) {
+      var self = this
 
       self.$http.get(
         self.$root.apiUrl + '/SelectedGalleries/publicView'
-      ).then(function(res) {
-        self.data = {};
+      ).then(function (res) {
+        self.data = {}
 
         for (var entry of res.data) {
-          var date = entry.date_y + '年' + entry.date_m + '月';
-          if (self.data[date] === undefined) self.data[date] = [];
-          self.data[date].push(entry.gallery);
+          var date = entry.date_y + '年' + entry.date_m + '月'
+          if (self.data[date] === undefined) self.data[date] = []
+          self.data[date].push(entry.gallery)
         }
 
-        transition.next();
-      });
+        transition.next()
+      })
     }
   },
   components: {

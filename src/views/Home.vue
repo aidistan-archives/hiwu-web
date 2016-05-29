@@ -34,25 +34,25 @@
   #home-qrcode2wxmp.am-modal.am-modal-no-btn(tabindex="-1")
     .am-modal-dialog
       .am-modal-hd 物境未觉
-        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close=true) &times;
+        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close=true) &times
       .am-modal-bd
         img.am-img-responsive(src="../assets/qrcode.jpg", alt="物境未觉公众号二维码")
 </template>
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       slide: { no: 1, max: 4 },
       imgStyle: { maxHeight: 0 }
-    };
+    }
   },
-  ready: function() {
-    this.initSlides();
-    this.imgStyle =  {
-      maxHeight: $(window).height() -
-        $('#home-slide-1').find('img:last-child').position().top + 'px'
-    };
+  ready: function () {
+    this.initSlides()
+    this.imgStyle = {
+      maxHeight: window.$(window).height() -
+        window.$('#home-slide-1').find('img:last-child').position().top + 'px'
+    }
   },
   route: {
     activate: function (transition) {
@@ -63,59 +63,57 @@ export default {
           link: window.location.href,
           imgUrl: 'http://hiwu.ren/logo-black-1024.png'
         }
-      });
+      })
 
-      transition.next();
+      transition.next()
     }
   },
   methods: {
-    initSlides: function() {
-      var self = this;
+    initSlides: function () {
+      this.resizeSlides()
+      window.$(window).scrollTop(0).resize(this.resizeSlides)
 
-      self.resizeSlides();
-      $(window).scrollTop(0).resize(self.resizeSlides);
-
-      var lastWheelTimeStamp;
-      $('body').on('wheel', function(e) {
-        if ($('#home').length === 0) return;
+      var lastWheelTimeStamp
+      window.$('body').on('wheel', (e) => {
+        if (window.$('#home').length === 0) return
         if (!lastWheelTimeStamp || e.timeStamp - lastWheelTimeStamp > 500) {
-          lastWheelTimeStamp = e.timeStamp;
+          lastWheelTimeStamp = e.timeStamp
           if (e.originalEvent.deltaY > 0) {
-            self.slideDown();
+            this.slideDown()
           } else {
-            self.slideUp();
+            this.slideUp()
           }
         }
-        return false;
-      });
+        return false
+      })
 
-      var Hammer = $.AMUI.Hammer;
-      var hammertime = new Hammer(document.getElementById('home'));
-      hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-      hammertime.on('swipeup', self.slideDown).on('swipedown', self.slideUp);
+      var Hammer = window.$.AMUI.Hammer
+      var hammertime = new Hammer(document.getElementById('home'))
+      hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
+      hammertime.on('swipeup', this.slideDown).on('swipedown', this.slideUp)
     },
-    resizeSlides: function() {
-      $('#home .slide').css({
-        width: $(window).width(),
-        height: $(window).height()
-      });
+    resizeSlides: function () {
+      window.$('#home .slide').css({
+        width: window.$(window).width(),
+        height: window.$(window).height()
+      })
     },
-    slideUp: function() {
+    slideUp: function () {
       if (this.slide.no > 1) {
-        $(window).smoothScroll({
-          position: $('#home-slide-' + (--this.slide.no)).position().top
-        });
+        window.$(window).smoothScroll({
+          position: window.$('#home-slide-' + (--this.slide.no)).position().top
+        })
       }
     },
-    slideDown: function() {
+    slideDown: function () {
       if (this.slide.no < this.slide.max) {
-        $(window).smoothScroll({
-          position: $('#home-slide-' + (++this.slide.no)).position().top
-        });
+        window.$(window).smoothScroll({
+          position: window.$('#home-slide-' + (++this.slide.no)).position().top
+        })
       }
     },
-    showQRcode: function() {
-      $('#home-qrcode2wxmp').modal({ width: 268 });
+    showQRcode: function () {
+      window.$('#home-qrcode2wxmp').modal({ width: 268 })
     }
   },
   components: {

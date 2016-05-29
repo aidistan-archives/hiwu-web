@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       data: {
         name: '',
@@ -28,27 +28,27 @@ export default {
         items: [],
         hiwuUser: { nickname: '', avatar: '' }
       }
-    };
+    }
   },
   computed: {
-    topbarTitle: function() {
-      return this.data.hiwuUser.nickname === '' ? '加载中...' : this.data.hiwuUser.nickname + '的博物馆';
+    topbarTitle: function () {
+      return this.data.hiwuUser.nickname === '' ? '加载中...' : this.data.hiwuUser.nickname + '的博物馆'
     },
-    title: function() {
-      return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
+    title: function () {
+      return this.data.hiwuUser.nickname + '「' + this.data.name + '」'
     },
-    descriptions: function() {
-      return this.data.description.split('\n');
+    descriptions: function () {
+      return this.data.description.split('\n')
     }
   },
   route: {
-    data: function(transition) {
-      var self = this;
+    data: function (transition) {
+      var self = this
 
       self.$http.get(
         self.$root.apiUrl + '/Galleries/' + self.$route.params.gallery_id + '/publicView'
-      ).then(function(res) {
-        self.data = res.data;
+      ).then(function (res) {
+        self.data = res.data
 
         self.$root.configJweixin({
           share_content: {
@@ -57,10 +57,10 @@ export default {
             link: window.location.href,
             imgUrl: self.data.hiwuUser.avatar
           }
-        });
+        })
 
-        transition.next();
-      }, function(res) { transition.abort(); });
+        transition.next()
+      }, function (res) { transition.abort() })
     }
   },
   components: {

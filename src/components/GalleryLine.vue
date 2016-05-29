@@ -10,8 +10,8 @@ a.gallery-line.am-padding-horizontal.am-padding-vertical-sm(v-link="link")
 export default {
   props: ['data', 'link'],
   computed: {
-    title: function() {
-      return this.data.hiwuUser.nickname + '「' + this.data.name + '」';
+    title: function () {
+      return this.data.hiwuUser.nickname + '「' + this.data.name + '」'
     }
   }
 }

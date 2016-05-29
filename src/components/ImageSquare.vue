@@ -14,7 +14,7 @@ export default {
     }
   },
   computed: {
-    style: function() {
+    style: function () {
       return {
         backgroundImage: 'url(' + this.src + '@!200x200)'
       }

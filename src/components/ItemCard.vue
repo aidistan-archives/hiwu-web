@@ -11,26 +11,24 @@ a.item-card.am-g.am-g-collapse(v-link="link")
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       shortDescription: ''
-    };
+    }
   },
   props: ['data', 'link'],
-  attached: function() {
-    var self = this;
+  attached: function () {
+    setTimeout(() => {
+      var eles = window.$(this.$el).find('.am-margin-sm')
 
-    setTimeout(function() {
-      var eles = $(self.$el).find('.am-margin-sm');
+      var lineNum = Math.floor((window.$(eles[0]).height() - window.$(eles[1]).height() - 20) / 25.6)
+      var charNumPerLine = Math.floor(window.$(eles[2]).width() / 16)
 
-      var lineNum = Math.floor(($(eles[0]).height() - $(eles[1]).height() - 20) / 25.6);
-      var charNumPerLine = Math.floor($(eles[2]).width() / 16);
-
-      self.shortDescription = self.data.description.slice(0, (charNumPerLine - 1) * lineNum);
-      if (self.shortDescription.length < self.data.description.length) {
-        self.shortDescription += '...';
+      this.shortDescription = this.data.description.slice(0, (charNumPerLine - 1) * lineNum)
+      if (this.shortDescription.length < this.data.description.length) {
+        this.shortDescription += '...'
       }
-    }, 50);
+    }, 50)
   },
   components: {
     'image-square': require('../components/ImageSquare.vue')

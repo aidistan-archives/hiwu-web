@@ -36,10 +36,10 @@
 </template>
 
 <script>
-var qs = require('querystring');
+var qs = require('querystring')
 
 export default {
-  data: function() {
+  data: function () {
     return {
       data: {
         name: '加载中...',
@@ -50,37 +50,40 @@ export default {
       },
       photo: '',
       likeImage: require('../assets/like.png')
-    };
+    }
   },
   computed: {
-    topbarTitle: function() {
-      return this.$loadingRouteData ? '加载中' : this.data.hiwuUser.nickname + '的博物馆';
+    topbarTitle: function () {
+      return this.$loadingRouteData ? '加载中' : this.data.hiwuUser.nickname + '的博物馆'
     },
-    date: function() {
-      var date = '';
-      if (this.data.date_y > 0)
-        date += this.data.date_y + '年';
-      if (this.data.date_m > 0)
-        date += this.data.date_m + '月';
-      if (this.data.date_d > 0)
-        date += this.data.date_d + '日';
-      return date;
+    date: function () {
+      var date = ''
+      if (this.data.date_y > 0) {
+        date += this.data.date_y + '年'
+      }
+      if (this.data.date_m > 0) {
+        date += this.data.date_m + '月'
+      }
+      if (this.data.date_d > 0) {
+        date += this.data.date_d + '日'
+      }
+      return date
     },
-    descriptions: function() {
-      return this.data.description.split('\n');
+    descriptions: function () {
+      return this.data.description.split('\n')
     }
   },
   route: {
-    data: function(transition) {
-      var self = this;
+    data: function (transition) {
+      var self = this
 
       self.$http.get(
         self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView?' + qs.stringify({
           access_token: self.$root.accessToken
         })
-      ).then(function(res) {
-        self.data = res.data;
-        self.photo = self.data.photos[0].url;
+      ).then(function (res) {
+        self.data = res.data
+        self.photo = self.data.photos[0].url
 
         self.$root.configJweixin({
           share_content: {
@@ -89,20 +92,20 @@ export default {
             link: window.location.href,
             imgUrl: self.photo + '@!200x200'
           }
-        });
+        })
 
-        transition.next();
-      });
+        transition.next()
+      })
     }
   },
   methods: {
-    change: function(url) {
-      this.photo = url;
+    change: function (url) {
+      this.photo = url
     }
   },
   components: {
     topbar: require('../components/Topbar.vue'),
-    'image-square': require('../components/ImageSquare.vue'),
+    'image-square': require('../components/ImageSquare.vue')
   }
 }
 </script>

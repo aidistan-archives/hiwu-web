@@ -23,14 +23,14 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       topbar: { leftImage: require('../assets/archive.png') },
       data: null
-    };
+    }
   },
   route: {
-    activate: function(transition) {
+    activate: function (transition) {
       this.$root.configJweixin({
         share_content: {
           title: '每日博物展 - 物境未觉',
@@ -38,20 +38,20 @@ export default {
           link: window.location.href,
           imgUrl: 'http://hiwu.ren/logo-black-1024.png'
         }
-      });
+      })
 
-      transition.next();
+      transition.next()
     },
-    data: function(transition) {
-      var self = this;
+    data: function (transition) {
+      var self = this
 
       self.$http.get(
         self.$root.apiUrl + '/SelectedGalleries/publicView'
-      ).then(function(res) {
-        self.data = res.data.slice(0, 8);
+      ).then(function (res) {
+        self.data = res.data.slice(0, 8)
 
-        transition.next();
-      });
+        transition.next()
+      })
     }
   },
   components: {

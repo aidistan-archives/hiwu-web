@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       title: '',
       description: '',
@@ -31,10 +31,10 @@ export default {
       weibo: '',
       mobile: '',
       email: ''
-    };
+    }
   },
   route: {
-    activate: function(transition) {
+    activate: function (transition) {
       this.$root.configJweixin({
         share_content: {
           title: '申请博物馆 - 物境未觉',
@@ -42,40 +42,38 @@ export default {
           link: window.location.href,
           imgUrl: 'http://hiwu.ren/logo-black-1024.png'
         }
-      });
+      })
 
-      transition.next();
+      transition.next()
     }
   },
   methods: {
-    submit: function() {
-      var self = this;
-
+    submit: function () {
       if (
-        (self.title === '') || (self.description === '') ||
-        (self.weixin === '' && self.weibo === '' && self.mobile === '' && self.email === '')
+        (this.title === '') || (this.description === '') ||
+        (this.weixin === '' && this.weibo === '' && this.mobile === '' && this.email === '')
       ) {
-        return self.$root.popup('请填写完整信息');
+        return this.$root.popup('请填写完整信息')
       }
 
-      self.$http.post(self.$root.apiUrl + '/Hiwu/mail?group=apply', {
+      this.$http.post(this.$root.apiUrl + '/Hiwu/mail?group=apply', {
         subject: '博物展申请',
         content: [
-          '标题：' + self.title,
-          '描述：' + self.description,
-          '微信：' + self.weixin,
-          '微博：' + self.weibo,
-          '手机：' + self.mobile,
-          '邮件：' + self.email
+          '标题：' + this.title,
+          '描述：' + this.description,
+          '微信：' + this.weixin,
+          '微博：' + this.weibo,
+          '手机：' + this.mobile,
+          '邮件：' + this.email
         ].join('\n')
-      }, function (data, status, request) {
+      }, (data, status, request) => {
         if (status === 200) {
-          self.$root.popup('申请提交成功');
-          self.$route.router.go({ name: 'today' });
+          this.$root.popup('申请提交成功')
+          this.$route.router.go({ name: 'today' })
         } else {
-          self.$root.popup('申请提交失败，请稍候再试');
+          this.$root.popup('申请提交失败，请稍候再试')
         }
-      });
+      })
     }
   },
   components: {
