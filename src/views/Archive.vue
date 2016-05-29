@@ -2,12 +2,12 @@
 #archive
   #archive-topbar.am-margin-bottom-sm
     topbar(title="往期博物展", :left-link="{ name: 'today' }")
-  #archive-content.am-container.am-padding-0
+  #archive-content.am-container.am-padding-0.am-margin-bottom-sm
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
       span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     template(v-if="!$loadingRouteData", v-for="(date, galleries) in data")
-      .am-u-sm-12.am-margin-sm.am-margin-bottom-xs
+      .am-u-sm-12.am-margin-top-sm.am-margin-bottom-xs
         .archive-date.am-text-sm {{ date }}
       .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="gallery in galleries")
         gallery(:data="gallery", :link="{ name: 'gallery', params: { gallery_id: gallery.id } }")

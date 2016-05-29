@@ -30,11 +30,13 @@
         span.am-icon-weibo.am-icon-sm
       span.am-icon-weixin.am-icon-sm(@click="showQRcode")
     img.am-img-responsive.am-center(src="../assets/home-slide-4.png", :style="imgStyle")
-    footer.am-text-xs.am-text-center.am-margin-xs &copy;2015 上海逗物信息技术有限公司，沪ICP备15037655号-1
+    footer.am-text-xs.am-text-center.am-margin-xs
+      div &copy;2015-2016 上海逗物信息技术有限公司
+      div 沪ICP备15037655号-1
   #home-qrcode2wxmp.am-modal.am-modal-no-btn(tabindex="-1")
     .am-modal-dialog
       .am-modal-hd 物境未觉
-        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close=true) &times
+        a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close=true) &times;
       .am-modal-bd
         img.am-img-responsive(src="../assets/qrcode.jpg", alt="物境未觉公众号二维码")
 </template>
