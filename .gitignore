@@ -1,9 +1,7 @@
 # Ignore node modules
-node_modules
+node_modules/
 
 # Ignore built files
-static/*.png
-static/*.jpg
-static/*.gif
-static/*.js
-static/*.js.map
+dist
+test/unit/coverage
+test/e2e/reports
