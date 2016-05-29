@@ -3,24 +3,22 @@
   router-view
   #modal.am-modal.am-modal-no-btn(tabindex="-1")
     .am-modal-dialog
-      .am-modal-hd {{ modalTitle }}
+      .am-modal-hd {{ modal.title }}
         a.am-close.am-close-spin(href="javascript: void(0)", data-am-modal-close="true") &times;
       .am-modal-bd
 </template>
 
 <script>
-var qs = require('querystring')
-
 export default {
   data: function () {
     return {
-      userId: null,
-      accessToken: null,
+      userId: this.$utils.getCookie('userId') || null,
+      accessToken: this.$utils.getCookie('accessToken') || null,
       oauth2: {
         weixin: 'wx92f55323cbadd8e8',
         weibo: '3167931574'
       },
-      modalTitle: ''
+      modal: {}
     }
   },
   computed: {
@@ -32,55 +30,39 @@ export default {
       }
     }
   },
-  ready: function () {
-    this.userId = this.getCookie('userId')
-    this.accessToken = this.getCookie('accessToken')
-  },
   methods: {
     popup: function (title) {
-      this.modalTitle = title
+      this.modal = {
+        title: title
+      }
+
       window.$('#modal').modal({
         closeViaDimmer: 0
       })
     },
     login: function (accessToken) {
       this.userId = accessToken.userId
-      this.setCookie('userId', accessToken.userId, 30)
+      this.$utils.setCookie('userId', accessToken.userId, 30)
       this.accessToken = accessToken.id
-      this.setCookie('accessToken', accessToken.id, 30)
+      this.$utils.setCookie('accessToken', accessToken.id, 30)
     },
     logout: function () {
       this.userId = null
-      this.setCookie('userId', '', 0)
+      this.$utils.setCookie('userId', '', 0)
       this.accessToken = null
-      this.setCookie('accessToken', '', 0)
-    },
-    setCookie: function (name, value, expireDate) {
-      var exdate = new Date()
-      exdate.setDate(exdate.getDate() + expireDate)
-      document.cookie = name + '=' + escape(value) + ((expireDate == null) ? '' : ';expires=' + exdate.toGMTString())
-    },
-    getCookie: function (name) {
-      if (document.cookie.length > 0) {
-        var start = document.cookie.indexOf(name + '=')
-        if (start !== -1) {
-          start = start + name.length + 1
-          var end = document.cookie.indexOf(';', start)
-          if (end === -1) end = document.cookie.length
-          return unescape(document.cookie.substring(start, end))
-        }
-      }
-      return null
+      this.$utils.setCookie('accessToken', '', 0)
     },
     configJweixin: function (options) {
-      var self = this
+      let wx = window.wx
 
-      self.$http.get(
-        self.$root.apiUrl + '/Hiwu/jweixinSignature?' + qs.stringify({
+      this.$http({
+        url: this.$root.apiUrl + '/Hiwu/jweixinSignature',
+        method: 'GET',
+        params: {
           url: window.location.href.split('#')[0]
-        })
-      ).then(function (res) {
-        window.wx.config(window.$.extend(res.data, {
+        }
+      }).then((res) => {
+        wx.config(window.$.extend(res.data, {
           jsApiList: [
             'onMenuShareTimeline',
             'onMenuShareAppMessage',
@@ -90,13 +72,13 @@ export default {
           ]
         }))
 
-        window.wx.ready(function () {
+        wx.ready(() => {
           if (options.share_content) {
-            window.wx.onMenuShareTimeline(options.share_content)
-            window.wx.onMenuShareAppMessage(options.share_content)
-            window.wx.onMenuShareQQ(options.share_content)
-            window.wx.onMenuShareWeibo(options.share_content)
-            window.wx.onMenuShareQZone(options.share_content)
+            wx.onMenuShareTimeline(options.share_content)
+            wx.onMenuShareAppMessage(options.share_content)
+            wx.onMenuShareQQ(options.share_content)
+            wx.onMenuShareWeibo(options.share_content)
+            wx.onMenuShareQZone(options.share_content)
           }
         })
       })
@@ -110,7 +92,6 @@ export default {
 
 body {
   background-image: url('./assets/background.jpg');
-  overflow-x: hidden;
 }
 
 .am-container {

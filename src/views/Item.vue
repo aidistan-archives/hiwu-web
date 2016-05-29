@@ -36,8 +36,6 @@
 </template>
 
 <script>
-var qs = require('querystring')
-
 export default {
   data: function () {
     return {
@@ -75,22 +73,21 @@ export default {
   },
   route: {
     data: function (transition) {
-      var self = this
+      this.$http({
+        url: this.$root.apiUrl + '/Items/' + this.$route.params.item_id + '/publicView',
+        headers: {
+          Authorization: this.$root.accessToken
+        }
+      }).then((res) => {
+        this.data = res.data
+        this.photo = this.data.photos[0].url
 
-      self.$http.get(
-        self.$root.apiUrl + '/Items/' + self.$route.params.item_id + '/publicView?' + qs.stringify({
-          access_token: self.$root.accessToken
-        })
-      ).then(function (res) {
-        self.data = res.data
-        self.photo = self.data.photos[0].url
-
-        self.$root.configJweixin({
+        this.$root.configJweixin({
           share_content: {
-            title: self.data.name + ' - 物境未觉',
-            desc: self.data.description.toString(),
+            title: this.data.name + ' - 物境未觉',
+            desc: this.data.description.toString(),
             link: window.location.href,
-            imgUrl: self.photo + '@!200x200'
+            imgUrl: this.photo + '@!200x200'
           }
         })
 

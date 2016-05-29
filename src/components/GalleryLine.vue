@@ -21,8 +21,6 @@ export default {
 @import '../variables.scss';
 
 .gallery-line {
-  display: block;
-
   color: inherit;
   background-color: #fff;
 
