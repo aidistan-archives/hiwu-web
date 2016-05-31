@@ -1,7 +1,7 @@
 <template lang="jade">
 #today
   #today-topbar
-    topbar(title="每日博物展", :left-link="{ name: 'archive' }", :left-image="topbar.leftImage", left-alt="往期博物展")
+    topbar(title="每日博物展", :left-link="{ name: 'archive' }", :left-image="topbar.leftImage", left-alt="往期博物展", :right-link="{ name: 'login_oauth' }")
   #today-banner.am-margin-vertical
     .am-text-center
       span 物境未觉，与您一起发现时光里的珍物
@@ -22,7 +22,7 @@
 export default {
   data: function () {
     return {
-      topbar: { leftImage: require('../assets/archive.png') },
+      topbar: { leftImage: require('assets/archive.png') },
       data: null
     }
   },

@@ -16,6 +16,14 @@ router.map({
     name: 'home',
     component: require('views/Home')
   },
+  '/login/account': {
+    name: 'login_account',
+    component: require('./views/login/Account')
+  },
+  '/login/oauth': {
+    name: 'login_oauth',
+    component: require('./views/login/Oauth')
+  },
   '/archive': {
     name: 'archive',
     component: require('views/Archive')

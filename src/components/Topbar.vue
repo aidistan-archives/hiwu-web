@@ -4,8 +4,8 @@
     a.am-fl(v-link="leftLink", :style="{ visibility: leftLink ? 'visible' : 'hidden' }")
       img.am-margin-bottom-xs(v-if="leftImage", :src="leftImage", :alt="leftAlt", width="18", height="18")
       span.am-icon-fw(v-else, :class="['am-icon-' + leftIcon]")
-    a.am-fr(v-link="{ name: 'today' }", :style="{ visibility: rightIcon ? 'visible' : 'hidden' }")
-      img(src="../assets/logo-primary-48.png", alt="申请", width="28.8", height="28.8")
+    a.am-fr(v-link="rightLink", :style="{ visibility: rightLink ? 'visible' : 'hidden' }")
+      img.am-margin-bottom-xs(src="../assets/logo-primary-48.png", width="25", height="25")
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
       type: String,
       default: 'chevron-left'
     },
-    rightIcon: {
+    rightLink: {
       default: false
     }
   }
