@@ -19,12 +19,6 @@
 var qs = require('querystring')
 
 export default {
-  data: function () {
-    return {
-      username: '',
-      password: ''
-    }
-  },
   computed: {
     weixinLink: function () {
       return 'https://open.weixin.qq.com/connect/qrconnect?' + qs.stringify({
@@ -44,17 +38,31 @@ export default {
     }
   },
   created: function () {
-    var self = this
-    var params = qs.parse(window.location.hash.split('?')[1])
+    let params = qs.parse(window.location.href.split('?')[1])
+
     if (params.state === 'weixin' && params.code) {
-      self.$http.post(self.$root.apiUrl + '/HiwuUsers/weixinLogin?appid=' + self.$root.oauth2.weixin + '&code=' + params.code, function (data, status, request) {
-        self.$root.login(data)
-        self.$route.router.go({ name: 'today' })
+      this.$http({
+        url: this.$root.apiUrl + '/HiwuUsers/weixinLogin',
+        method: 'POST',
+        params: {
+          appid: this.$root.oauth2.weixin,
+          code: params.code
+        }
+      }).then((res) => {
+        this.$root.login(res.data)
+        this.$router.go({ name: 'today' })
       })
     } else if (params.state === 'weibo' && params.code) {
-      self.$http.post(self.$root.apiUrl + '/HiwuUsers/weiboLogin?appid=' + self.$root.oauth2.weibo + '&code=' + params.code, function (data, status, request) {
-        self.$root.login(data)
-        self.$route.router.go({ name: 'today' })
+      this.$http({
+        url: this.$root.apiUrl + '/HiwuUsers/weiboLogin',
+        method: 'POST',
+        params: {
+          appid: this.$root.oauth2.weibo,
+          code: params.code
+        }
+      }).then((res) => {
+        this.$root.login(res.data)
+        this.$router.go({ name: 'today' })
       })
     }
   },

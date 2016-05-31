@@ -97,4 +97,41 @@ body {
 .am-container {
   max-width: 1200px;
 }
+
+.v-transition {
+  width: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+}
+
+.scale-up-in-transition { @extend .v-transition; }
+.scale-up-in-enter { animation: scaleUpIn .7s ease both; }
+
+@keyframes scaleUpIn {
+  from { opacity: 0; transform: scale(.8); }
+  to { }
+}
+
+@keyframes easeRightIn {
+  from { transform: translateX(100%);  }
+  to { }
+}
+
+@keyframes easeLeftOut {
+  from { }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes fallOut {
+	0% { transform: rotateZ(0deg); }
+	20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+	40% { transform: rotateZ(17deg); }
+	60% { transform: rotateZ(16deg); }
+	100% { transform: translateY(100%) rotateZ(17deg); }
+}
 </style>

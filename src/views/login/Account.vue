@@ -31,10 +31,15 @@ export default {
     login: function () {
       if (this.username === '') return
 
-      var self = this
-      self.$http.post(self.$root.apiUrl + '/HiwuUsers/simpleLogin?username=' + self.username, function (data, status, request) {
-        self.$root.login(data)
-        self.$route.router.go({ name: 'today' })
+      this.$http({
+        url: this.$root.apiUrl + '/HiwuUsers/simpleLogin',
+        method: 'POST',
+        params: {
+          username: this.username
+        }
+      }).then((res) => {
+        this.$root.login(res.data)
+        this.$router.go({ name: 'today' })
       })
     }
   }

@@ -7,7 +7,7 @@
       h3.am-margin-top-xl 正在努力加载中...
     .am-container.am-padding-0(v-else)
       #item-photo-wrapper.am-margin-0
-        .am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered
+        .am-u-sm-12.am-u-md-9.am-u-lg-6.am-u-sm-centered.am-padding-0
           img.am-img-responsive.am-center(:src="photo")
           .am-g.am-g-collapse.am-margin-top-sm(v-if="data.photos.length > 1")
             .am-u-sm-2.am-u-md-1.am-u-end(v-for="photo in data.photos", style="margin-right: 5px;")
@@ -47,7 +47,7 @@ export default {
         comments: []
       },
       photo: '',
-      likeImage: require('../assets/like.png')
+      likeImage: require('assets/like.png')
     }
   },
   computed: {
@@ -101,8 +101,8 @@ export default {
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue'),
-    'image-square': require('../components/ImageSquare.vue')
+    topbar: require('components/Topbar'),
+    'image-square': require('components/ImageSquare')
   }
 }
 </script>

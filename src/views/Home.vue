@@ -119,8 +119,8 @@ export default {
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue'),
-    gallery: require('../components/GalleryCard.vue')
+    topbar: require('components/Topbar'),
+    gallery: require('components/GalleryCard')
   }
 }
 </script>

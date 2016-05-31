@@ -14,7 +14,7 @@
       span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
       h3.am-margin-top-xl 正在努力加载中...
     template(v-else)
-      gallery.am-margin-bottom(v-for="entry in data", :data="entry.gallery", transition="")
+      gallery.am-margin-bottom(v-for="entry in data", :data="entry.gallery", transition="scale-up-in")
       p.am-text-center 点击左上角查看更多往期博物馆
 </template>
 
@@ -51,8 +51,8 @@ export default {
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue'),
-    gallery: require('../components/GalleryCard.vue')
+    topbar: require('components/Topbar'),
+    gallery: require('components/GalleryCard')
   }
 }
 </script>

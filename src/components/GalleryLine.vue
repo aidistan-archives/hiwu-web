@@ -27,7 +27,10 @@ export default {
   display: flex;
   align-items: center;
 
-  .thumb, .badge { flex: none; }
+  .thumb,
+  .badge {
+    flex: none;
+  }
 
   .title {
     flex: auto;

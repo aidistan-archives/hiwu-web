@@ -35,17 +35,19 @@ export default {
       transition.next()
     },
     data: function (transition) {
-      var self = this
+      this.$http({
+        url: this.$root.apiUrl + '/SelectedGalleries/publicView',
+        method: 'GET'
+      }).then((res) => {
+        this.data = {}
 
-      self.$http.get(
-        self.$root.apiUrl + '/SelectedGalleries/publicView'
-      ).then(function (res) {
-        self.data = {}
-
-        for (var entry of res.data) {
-          var date = entry.date_y + '年' + entry.date_m + '月'
-          if (self.data[date] === undefined) self.data[date] = []
-          self.data[date].push(entry.gallery)
+        for (let entry of res.data) {
+          let date = entry.date_y + '年' + entry.date_m + '月'
+          if (this.data[date] === undefined) {
+            this.data[date] = [entry.gallery]
+          } else {
+            this.data[date].push(entry.gallery)
+          }
         }
 
         transition.next()
@@ -53,8 +55,8 @@ export default {
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue'),
-    gallery: require('../components/GalleryLine.vue')
+    topbar: require('components/Topbar'),
+    gallery: require('components/GalleryLine')
   }
 }
 </script>

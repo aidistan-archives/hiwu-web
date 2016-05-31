@@ -31,7 +31,7 @@ export default {
     }, 50)
   },
   components: {
-    'image-square': require('../components/ImageSquare.vue')
+    'image-square': require('components/ImageSquare')
   }
 }
 </script>
@@ -44,14 +44,10 @@ export default {
   color: inherit;
   background-color: #fff;
 
-  h3.am-text-lg {
+  h3 {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-
-  .item-desc {
-    height: 100%;
   }
 }
 </style>

@@ -12,8 +12,7 @@
       .am-u-sm-12.am-margin-top.am-padding-horizontal-lg
         h2.am-text-xl.am-text-center {{ title }}
         p(v-for="desc in descriptions") {{ desc }}
-    #gallery-items
-      .am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="item in data.items")
+    #gallery-items.am-u-sm-12.am-u-md-6.am-u-lg-4.am-u-end(v-for="item in data.items")
         item(:data="item", :link="{ name: 'item', params: { item_id: item.id } }")
         .gallery-seperator(v-show="$index < data.items.length - 1")
 </template>
@@ -26,7 +25,10 @@ export default {
         name: '',
         description: '',
         items: [],
-        hiwuUser: { nickname: '', avatar: '' }
+        hiwuUser: {
+          nickname: '',
+          avatar: ''
+        }
       }
     }
   },
@@ -43,29 +45,28 @@ export default {
   },
   route: {
     data: function (transition) {
-      var self = this
+      this.$http({
+        url: this.$root.apiUrl + '/Galleries/' + this.$route.params.gallery_id + '/publicView',
+        method: 'GET'
+      }).then((res) => {
+        this.data = res.data
 
-      self.$http.get(
-        self.$root.apiUrl + '/Galleries/' + self.$route.params.gallery_id + '/publicView'
-      ).then(function (res) {
-        self.data = res.data
-
-        self.$root.configJweixin({
+        this.$root.configJweixin({
           share_content: {
-            title: self.title + ' - 物境未觉',
-            desc: self.data.description,
+            title: this.title + ' - 物境未觉',
+            desc: this.data.description,
             link: window.location.href,
-            imgUrl: self.data.hiwuUser.avatar
+            imgUrl: this.data.hiwuUser.avatar
           }
         })
 
         transition.next()
-      }, function (res) { transition.abort() })
+      }, (res) => transition.abort())
     }
   },
   components: {
-    topbar: require('../components/Topbar.vue'),
-    item: require('../components/ItemCard.vue')
+    topbar: require('components/Topbar'),
+    item: require('components/ItemCard')
   }
 }
 </script>
@@ -76,6 +77,12 @@ export default {
 #gallery-header p {
   color: $grey-dark;
   text-align: justify;
+}
+
+#gallery-items {
+  @media #{$small-only} {
+    padding: 0;
+  }
 }
 
 .gallery-seperator {

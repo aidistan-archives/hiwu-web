@@ -1,30 +1,4 @@
-import './native'
-import { uuidFast as uuid } from './uuid'
-
-// Methods end with "_d" are destructive ones.
-let utils = { uuid,
-  extend: function () {
-    let res = {}
-
-    for (let obj of arguments) {
-      for (let k in obj) {
-        res[k] = obj[k]
-      }
-    }
-
-    return res
-  },
-  extend_d: function () {
-    let res = Array.from(arguments).shift()
-
-    for (let obj of arguments) {
-      for (let k in obj) {
-        res[k] = obj[k]
-      }
-    }
-
-    return res
-  },
+let utils = {
   mkpasswd: function (length) {
     let charset = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
     let maximum = charset.length
@@ -57,10 +31,12 @@ let utils = { uuid,
 
 export default {
   install: function (Vue) {
+    Vue._ = require('lodash/core')
     Vue.utils = utils
 
-    Object.defineProperty(Vue.prototype, '$utils', {
-      value: utils
+    Object.defineProperties(Vue.prototype, {
+      '$_': { value: Vue._ },
+      '$utils': { value: Vue.utils }
     })
   }
 }

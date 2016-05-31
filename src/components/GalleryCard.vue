@@ -6,7 +6,7 @@ a.gallery-card.am-padding-sm(v-link="{ name: 'gallery', params: { gallery_id: da
     .title.am-margin-horizontal {{ data.hiwuUser.nickname }}「{{ data.name }}」
     .badge.am-text-sm {{ data.items.length }} 件
   .am-g.am-g-collapse
-    .am-u-sm-4.am-u-md-3.am-u-lg-2.am-u-end(v-for="item in featureItems", style="padding: 2px;")
+    .gallery-card-image-wrapper.am-u-sm-4.am-u-md-3.am-u-lg-2.am-u-end(v-for="item in featureItems", style="padding: 2px;")
       image-square(:src="item.photos[0].url", :href="{ name: 'item', params: { item_id: item.id } }")
 </template>
 
@@ -15,11 +15,11 @@ export default {
   props: ['data'],
   computed: {
     featureItems: function () {
-      return this.data.items.slice(0, window.$(window).width() > 640 ? 12 : 9)
+      return this.data.items.slice(0, 12)
     }
   },
   components: {
-    'image-square': require('../components/ImageSquare.vue')
+    'image-square': require('components/ImageSquare')
   }
 }
 </script>
@@ -37,7 +37,10 @@ export default {
     display: flex;
     align-items: center;
 
-    .thumb, .badge { flex: none; }
+    .thumb,
+    .badge {
+      flex: none;
+    }
 
     .title {
       flex: auto;
@@ -49,6 +52,14 @@ export default {
     .badge {
       padding-top: 3px;
       color: $grey;
+    }
+  }
+}
+
+.gallery-card-image-wrapper {
+  @media #{$small-only} {
+    &:nth-child(n + 10) {
+      display: none;
     }
   }
 }
