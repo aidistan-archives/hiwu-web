@@ -2,16 +2,13 @@
 #today
   #today-topbar
     topbar(title="每日博物展", :left-link="{ name: 'archive' }", :left-image="topbar.leftImage", left-alt="往期博物展")
-  #today-banner.am-margin-vertical-lg
+  #today-banner.am-margin-vertical
     .am-text-center
       span 物境未觉，与您一起发现时光里的珍物
       br
       span 共建游历初心的物件文化
       br
       span 感受万物欢喜，体会万物动情
-    #today-apply.am-text-center.am-margin-vertical-lg(v-link="{ name: 'apply' }")
-      span.am-padding.am-padding-horizontal-lg 申请建立我的博物馆
-  hr#today-seperator
   #today-galleries.am-container.am-padding-0
     .am-text-center.am-margin-xl(v-if="$loadingRouteData")
       span.am-icon-circle-o-notch.am-icon-spin.am-icon-lg
@@ -36,7 +33,7 @@ export default {
           title: '每日博物展 - 物境未觉',
           desc: '物境未觉，与您一起发现时光里的珍物，共建游历初心的物件文化，感受万物欢喜，体会万物动情！',
           link: window.location.href,
-          imgUrl: 'http://hiwu.ren/static/logo-black-1024.png'
+          imgUrl: 'http://hiwu.ren/static/img/logo-black-1024.7747d72.png'
         }
       })
 
@@ -62,15 +59,6 @@ export default {
 
 <style lang="scss">
 @import '../variables.scss';
-
-#today-apply {
-  cursor: pointer;
-
-  span {
-    background-image: url('../assets/btn-background.png');
-    background-size: 100% 100%;
-  }
-}
 
 #today-galleries {
   p.am-text-center { color: $grey; }

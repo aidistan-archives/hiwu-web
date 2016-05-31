@@ -14,27 +14,23 @@ let router = new Router({
 router.map({
   '/': {
     name: 'home',
-    component: require('views/Home.vue')
-  },
-  '/apply': {
-    name: 'apply',
-    component: require('views/Apply.vue')
+    component: require('views/Home')
   },
   '/archive': {
     name: 'archive',
-    component: require('views/Archive.vue')
+    component: require('views/Archive')
   },
   '/today': {
     name: 'today',
-    component: require('views/Today.vue')
+    component: require('views/Today')
   },
   '/galleries/:gallery_id': {
     name: 'gallery',
-    component: require('views/Gallery.vue')
+    component: require('views/Gallery')
   },
   '/items/:item_id': {
     name: 'item',
-    component: require('views/Item.vue')
+    component: require('views/Item')
   }
 })
 
